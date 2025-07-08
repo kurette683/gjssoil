@@ -12,5 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Replace API keys        run: |          sed -i "s|\${{ secrets.KAKAO_API_KEY }}|${{ secrets.KAKAO_API_KEY }}|g" index.html          sed -i "s|\${{ secrets.PUBLIC_DATA_API_KEY }}|${{ secrets.PUBLIC_DATA_API_KEY }}|g" index.html          sed -i "s|\${{ secrets.OPINET_API_KEY }}|${{ secrets.OPINET_API_KEY }}|g" index.html        
+      - name: Replace API keys        run: |          sed -i "s|\[YOUR_KAKAO_API_KEY\]|${{ secrets.KAKAO_API_KEY }}|g" index.html
+          sed -i "s|\[YOUR_PUBLIC_DATA_API_KEY\]|${{ secrets.PUBLIC_DATA_API_KEY }}|g" index.html
+          sed -i "s|\[YOUR_OPINET_API_KEY\]|${{ secrets.OPINET_API_KEY }}|g" index.html        
       - name: Deploy to GitHub Pages        uses: peaceiris/actions-gh-pages@v3        with:          github_token: ${{ secrets.GITHUB_TOKEN }}          publish_dir: .

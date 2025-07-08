@@ -1,1 +1,1 @@
-Fix: Correct YAML syntax in deploy.yml
+Fix: Correct YAML syntax and sed escaping in deploy.yml
