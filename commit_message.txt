@@ -1,1 +1,1 @@
-Initial project setup
+Add application code and GitHub Actions workflow
