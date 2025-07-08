@@ -1,1 +1,1 @@
-Add application code and GitHub Actions workflow
+Fix: Correct YAML syntax in deploy.yml
