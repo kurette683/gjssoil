@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gjssoil - 광주 상생카드 주유소 찾기</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Kakao Maps API -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${{ secrets.KAKAO_API_KEY }}&libraries=services"></script>
+    
+    <!--
+      Chosen Palette: Calm Neutrals with a Green Accent (for price information)
+      Application Structure Plan: This is a single-page application (SPA) featuring a dual-view system toggled by a button. The default view is a sortable list for analytical comparison of prices and distances. The alternate view is an interactive map for spatial exploration. This structure was chosen because it directly addresses the two primary user goals: finding the 'best' station by data (list) and finding a 'convenient' station by location (map). The user flow is: Load -> Grant Location -> See sorted list -> Toggle to map for spatial context.
+      Visualization & Content Choices: 
+      - Report Info: Gwangju Sangsaeng Card affiliated gas stations and their real-time fuel prices.
+      - Goal: Enable users to find the cheapest and/or closest gas station.
+      - Viz/Presentation Method: 1. A dynamic HTML list for detailed, sortable data. 2. A Kakao Map with interactive markers for spatial understanding.
+      - Interaction: Users can toggle views, sort the list by price or distance, and click map markers for details.
+      - Justification: This dual-view approach serves both analytical (list-based) and exploratory (map-based) user behaviors, providing a comprehensive tool for decision-making.
+      - Library/Method: Vanilla JavaScript, Kakao Maps API.
+      CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+        /* Custom styles for better UI */
+        #map {
+            width: 100%;
+            height: 80vh; /* Ensure map has a defined height */
+        }
+        .loader {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Ensure smooth view transitions */
+        #store-list, #map-container {
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <div class="container mx-auto p-4 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center my-6">
+            <h1 class="text-4xl font-bold text-gray-800">gjssoil</h1>
+            <p class="text-lg text-gray-600 mt-2">광주 상생카드 가맹 주유소 최저가 찾기</p>
+        </header>
+
+        <!-- Controls -->
+        <div class="flex justify-between items-center bg-white p-3 rounded-lg shadow-md mb-6">
+            <div class="flex gap-2">
+                <select id="sort-by" class="p-2 border rounded-md text-sm">
+                    <option value="distance">거리순</option>
+                    <option value="B027">휘발유순</option>
+                    <option value="D047">경유순</option>
+                    <option value="K015">LPG순</option>
+                </select>
+            </div>
+            <button id="toggle-view" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
+                지도 보기
+            </button>
+        </div>
+
+        <!-- Status Message -->
+        <div id="status-message" class="text-center p-4 my-4 bg-yellow-100 text-yellow-800 rounded-md hidden"></div>
+
+        <!-- Loader -->
+        <div id="loader-container" class="flex justify-center items-center h-64">
+            <div class="loader"></div>
+        </div>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Store List -->
+            <div id="store-list" class="space-y-4">
+                <!-- Dynamic content will be injected here -->
+            </div>
+            <!-- Map Container -->
+            <div id="map-container" class="hidden rounded-lg overflow-hidden shadow-lg">
+                <div id="map"></div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm mt-8 pb-4">
+            <p>본 데이터는 공공데이터포털과 오피넷 API를 기반으로 제공됩니다.</p>
+        </footer>
+    </div>
+
+    <script type="module">
+        // --- CONFIGURATION ---
+        // IMPORTANT: Replace placeholders with your actual API keys
+        const KAKAO_API_KEY = "${{ secrets.KAKAO_API_KEY }}";
+        const PUBLIC_DATA_API_KEY = "${{ secrets.PUBLIC_DATA_API_KEY }}"; // 공공데이터포털 API 키
+        const OPINET_API_KEY = "${{ secrets.OPINET_API_KEY }}"; // 오피넷 API 키
+        const GWANGJU_CENTER = { lat: 35.1601, lng: 126.8515 }; // Gwangju City Hall coordinates
+
+        // --- DOM ELEMENT SELECTORS ---
+        const storeListEl = document.getElementById('store-list');
+        const mapContainerEl = document.getElementById('map-container');
+        const mapEl = document.getElementById('map');
+        const toggleViewBtn = document.getElementById('toggle-view');
+        const sortBySelect = document.getElementById('sort-by');
+        const loaderContainer = document.getElementById('loader-container');
+        const statusMessageEl = document.getElementById('status-message');
+
+        let map = null; // To hold the map instance
+        let markers = []; // To hold map markers
+        let currentView = 'list'; // 'list' or 'map'
+        let allStoresData = []; // To cache data
+        let userLocation = null;
+
+        // --- UTILITY FUNCTIONS ---
+        const showLoader = (show) => {
+            loaderContainer.style.display = show ? 'flex' : 'none';
+        };
+
+        const showStatusMessage = (message) => {
+            statusMessageEl.textContent = message;
+            statusMessageEl.classList.remove('hidden');
+        };
+
+        const calculateDistance = (lat1, lon1, lat2, lon2) => {
+            const R = 6371; // Radius of the Earth in km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R.toFixed(2) * c; // Distance in km
+        };
+
+        // --- API FETCHING FUNCTIONS ---
+        async function fetchSangsaengStores() {
+            // Using a proxy for CORS issues if needed, but trying direct first.
+            const url = `https://api.odcloud.kr/api/15138321/v1/uddi:75e4170b-a8a2-40f3-9a13-edc13abab53e?page=1&perPage=300&serviceKey=${encodeURIComponent(PUBLIC_DATA_API_KEY)}`;
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`공공데이터포털 API 오류: ${response.status}`);
+                const data = await response.json();
+                
+                return data.data
+                    .filter(item => item['업종명'] && (item['업종명'].includes('주유소') || item['업종명'].includes('충전소')))
+                    .map(item => ({ name: item['업체명'], address: item['업체주소'] }));
+            } catch (error) {
+                console.error("상생가맹점 데이터 조회 실패:", error);
+                showStatusMessage("광주 상생카드 가맹점 정보를 불러오는 데 실패했습니다.");
+                return [];
+            }
+        }
+        
+        async function fetchPrice(storeName) {
+            const url = `https://www.opinet.co.kr/api/searchByName.do?code=${OPINET_API_KEY}&out=json&osnm=${encodeURIComponent(storeName)}`;
+             try {
+                // Opinet API can be tricky with CORS. If it fails, a server-side proxy would be needed.
+                // For this client-side example, we proceed assuming it works.
+                const response = await fetch(url);
+                if (!response.ok) return {}; // Silently fail for individual price checks
+                const data = await response.json();
+                
+                if (data.RESULT.OIL_PRICE.length > 0) {
+                    const prices = data.RESULT.OIL_PRICE.reduce((acc, oil) => {
+                        acc[oil.PRODCD] = oil.PRICE;
+                        return acc;
+                    }, {});
+                    return prices;
+                }
+                return {};
+            } catch (error) {
+                // This error often relates to CORS, which can't be caught here.
+                console.error(`가격정보 조회 실패 (${storeName}):`, error);
+                return {};
+            }
+        }
+        
+        // --- DATA PROCESSING & INTEGRATION ---
+        async function getCombinedData(location) {
+            const stores = await fetchSangsaengStores();
+            if (stores.length === 0) return [];
+
+            const geocoder = new kakao.maps.services.Geocoder();
+
+            const promises = stores.map(store => new Promise(async (resolve) => {
+                geocoder.addressSearch(store.address, async (result, status) => {
+                    if (status === kakao.maps.services.Status.OK) {
+                        const lat = parseFloat(result[0].y);
+                        const lng = parseFloat(result[0].x);
+                        // NOTE: Opinet API calls are rate-limited and slow. In a real app, this should be done on a backend.
+                        // We are simplifying here. A delay might be needed to avoid rate-limiting.
+                        await new Promise(r => setTimeout(r, 50)); // Small delay
+                        const prices = await fetchPrice(store.name);
+                        const distance = location ? calculateDistance(location.lat, location.lng, lat, lng) : null;
+                        
+                        resolve({ ...store, lat, lng, prices, distance });
+                    } else {
+                        resolve(null); // Resolve with null if geocoding fails
+                    }
+                });
+            }));
+
+            const combinedData = (await Promise.all(promises)).filter(Boolean); // Filter out nulls
+            return combinedData;
+        }
+
+
+        // --- UI DISPLAY FUNCTIONS ---
+        function displayList(data) {
+            storeListEl.innerHTML = ''; // Clear previous list
+            if (data.length === 0) {
+                storeListEl.innerHTML = `<p class="text-center text-gray-500">표시할 주유소 정보가 없습니다.</p>`;
+                return;
+            }
+
+            data.forEach(store => {
+                const priceGasoline = store.prices['B027'] ? `${parseInt(store.prices['B027']).toLocaleString()}원` : '정보없음';
+                const priceDiesel = store.prices['D047'] ? `${parseInt(store.prices['D047']).toLocaleString()}원` : '정보없음';
+                const priceLPG = store.prices['K015'] ? `${parseInt(store.prices['K015']).toLocaleString()}원` : '정보없음';
+
+                const card = document.createElement('div');
+                card.className = 'bg-white p-4 rounded-lg shadow-sm border border-gray-200';
+                card.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">${store.name}</h3>
+                            <p class="text-sm text-gray-600">${store.address}</p>
+                        </div>
+                        ${store.distance !== null ? `<span class="text-lg font-semibold text-blue-600">${store.distance.toFixed(1)} km</span>` : ''}
+                    </div>
+                    <div class="mt-4 grid grid-cols-3 gap-2 text-center border-t pt-3">
+                        <div>
+                            <p class="text-xs text-gray-500">휘발유</p>
+                            <p class="font-semibold ${priceGasoline !== '정보없음' ? 'text-green-700' : 'text-gray-400'}">${priceGasoline}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">경유</p>
+                            <p class="font-semibold ${priceDiesel !== '정보없음' ? 'text-green-700' : 'text-gray-400'}">${priceDiesel}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">LPG</p>
+                            <p class="font-semibold ${priceLPG !== '정보없음' ? 'text-green-700' : 'text-gray-400'}">${priceLPG}</p>
+                        </div>
+                    </div>
+                `;
+                storeListEl.appendChild(card);
+            });
+        }
+
+        function displayMap(data) {
+            const center = userLocation ? new kakao.maps.LatLng(userLocation.lat, userLocation.lng) : new kakao.maps.LatLng(GWANGJU_CENTER.lat, GWANGJU_CENTER.lng);
+            const options = {
+                center: center,
+                level: 7
+            };
+
+            if (!map) {
+                map = new kakao.maps.Map(mapEl, options);
+            } else {
+                 map.setCenter(center);
+            }
+
+            // Clear existing markers
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
+
+            data.forEach(store => {
+                const position = new kakao.maps.LatLng(store.lat, store.lng);
+                const marker = new kakao.maps.Marker({
+                    position: position
+                });
+
+                const priceGasoline = store.prices['B027'] ? `${parseInt(store.prices['B027']).toLocaleString()}원` : '-';
+                const iwContent = `
+                    <div style="padding:5px; font-size:12px; width: 180px;">
+                        <strong style="display:block;">${store.name}</strong>
+                        <span>휘발유: ${priceGasoline}</span>
+                    </div>`;
+
+                const infowindow = new kakao.maps.InfoWindow({
+                    content: iwContent
+                });
+
+                kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
+                kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
+
+                marker.setMap(map);
+                markers.push(marker);
+            });
+        }
+        
+        // --- EVENT HANDLERS ---
+        toggleViewBtn.addEventListener('click', () => {
+            if (currentView === 'list') {
+                currentView = 'map';
+                storeListEl.classList.add('hidden');
+                mapContainerEl.classList.remove('hidden');
+                toggleViewBtn.textContent = '목록 보기';
+                if(allStoresData.length > 0) displayMap(allStoresData);
+            } else {
+                currentView = 'list';
+                mapContainerEl.classList.add('hidden');
+                storeListEl.classList.remove('hidden');
+                toggleViewBtn.textContent = '지도 보기';
+            }
+        });
+        
+        sortBySelect.addEventListener('change', (e) => {
+            sortAndDisplayData(e.target.value);
+        });
+
+        // --- MAIN LOGIC ---
+        function sortAndDisplayData(sortBy) {
+             let sortedData = [...allStoresData];
+
+            if (sortBy === 'distance') {
+                sortedData.sort((a, b) => (a.distance || 999) - (b.distance || 999));
+            } else { // Sort by price
+                sortedData.sort((a, b) => {
+                    const priceA = a.prices[sortBy] ? parseInt(a.prices[sortBy]) : 99999;
+                    const priceB = b.prices[sortBy] ? parseInt(b.prices[sortBy]) : 99999;
+                    return priceA - priceB;
+                });
+            }
+            displayList(sortedData);
+             if (currentView === 'map') {
+                displayMap(sortedData);
+            }
+        }
+
+        async function initializeApp(location) {
+            userLocation = location;
+            showLoader(true);
+            try {
+                allStoresData = await getCombinedData(location);
+                sortAndDisplayData('distance'); // Initial sort by distance
+            } catch (error) {
+                console.error("초기화 실패:", error);
+                showStatusMessage("데이터를 불러오는 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+            } finally {
+                showLoader(false);
+            }
+        }
+
+        window.onload = () => {
+             if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const location = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        initializeApp(location);
+                    },
+                    (error) => {
+                        console.warn("위치 정보 접근 실패:", error.message);
+                        showStatusMessage("위치 정보를 가져올 수 없습니다. 광주 시청을 기준으로 표시합니다.");
+                        initializeApp(GWANGJU_CENTER); // Fallback to default location
+                    }
+                );
+            } else {
+                 showStatusMessage("이 브라우저는 위치 정보를 지원하지 않습니다.");
+                 initializeApp(GWANGJU_CENTER); // Fallback to default location
+            }
+        };
+
+    </script>
+
+</body>
+</html>
