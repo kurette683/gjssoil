@@ -141,19 +141,34 @@
 
         // --- API FETCHING FUNCTIONS ---
         async function fetchSangsaengStores() {
-            // Using a proxy for CORS issues if needed, but trying direct first.
-            const url = `https://api.odcloud.kr/api/15138321/v1/uddi:75e4170b-a8a2-40f3-9a13-edc13abab53e?page=1&perPage=300&serviceKey=${encodeURIComponent(PUBLIC_DATA_API_KEY)}`;
+            const csvUrl = "./gjssoil_stores.csv"; // GitHub Pages에서 접근 가능한 경로
             try {
-                const response = await fetch(url);
-                if (!response.ok) throw new Error(`공공데이터포털 API 오류: ${response.status}`);
-                const data = await response.json();
-                
-                return data.data
-                    .filter(item => item['업종명'] && (item['업종명'].includes('주유소') || item['업종명'].includes('충전소')))
-                    .map(item => ({ name: item['업체명'], address: item['업체주소'] }));
+                const response = await fetch(csvUrl);
+                if (!response.ok) throw new Error(`CSV 파일 로드 오류: ${response.status}`);
+                const csvText = await response.text();
+
+                // CSV 파싱 (간단한 예시, 실제 CSV 구조에 따라 조정 필요)
+                const lines = csvText.trim().split('\n');
+                const headers = lines[0].split(',');
+                const stores = [];
+
+                for (let i = 1; i < lines.length; i++) {
+                    const values = lines[i].split(',');
+                    const store = {};
+                    for (let j = 0; j < headers.length; j++) {
+                        store[headers[j].trim()] = values[j].trim();
+                    }
+                    // 필요한 데이터만 추출
+                    stores.push({
+                        name: store['업체명'],
+                        address: store['업체주소'],
+                        category: store['업종명'] // 업종명도 필요할 수 있으므로 추가
+                    });
+                }
+                return stores;
             } catch (error) {
-                console.error("상생가맹점 데이터 조회 실패:", error);
-                showStatusMessage("광주 상생카드 가맹점 정보를 불러오는 데 실패했습니다.");
+                console.error("CSV 데이터 로드 실패:", error);
+                showStatusMessage("주유소 정보를 불러오는 데 실패했습니다.");
                 return [];
             }
         }
