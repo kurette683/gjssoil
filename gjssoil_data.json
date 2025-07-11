@@ -1,0 +1,764 @@
+[
+    {
+        "name": "대광주유소",
+        "address": "광주 서구 하남대로 556",
+        "category": "GS주유소",
+        "prices": {}
+    },
+    {
+        "name": "날으는가스",
+        "address": "광주 광산구 체암로 1652",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "(주)일곡석유",
+        "address": "광주 북구 우치로422번길 22",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "광장주유소",
+        "address": "광주 광산구 북문대로 907",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "(주)아지산업",
+        "address": "광주 광산구 목련로 250",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "금성특수가스",
+        "address": "광주 광산구 체암로 1808",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "대촌주유소",
+        "address": "광주 남구 고싸움로",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "동산가스",
+        "address": "광주 동구 밤실로4번길 43",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "(주)명진주유소",
+        "address": "광주 광산구 고봉로 21",
+        "category": "GS주유소",
+        "prices": {}
+    },
+    {
+        "name": "(주)자연개발 옥산주유소",
+        "address": "광주 서구 풍서우로 176",
+        "category": "주 유 소",
+        "prices": {}
+    },
+    {
+        "name": "남선석유(주)평동그린주유소",
+        "address": "광주 광산구 동곡로 645",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "(유)대중문화가스",
+        "address": "광주 남구 효덕로 103",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "고려가스(주)",
+        "address": "광주 광산구 평동로 853-7",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "광산LPG",
+        "address": "광주 광산구 연산로 277",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "광주에너지",
+        "address": "광주 광산구 고봉로 241",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "금선에너지",
+        "address": "광주 남구 송암로24번나길 14-22",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "(주)대산가스",
+        "address": "광주 북구 동문대로 409",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "(주)스마일셀프주유소",
+        "address": "광주 광산구 고봉로 541",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "(주)엔씨아이 코끼주유소",
+        "address": "광주 북구 서하로 77",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "(유)광임신성가스",
+        "address": "광주 북구 민주로 128",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "(주)경훈에너지",
+        "address": "광주 북구 서하로 237",
+        "category": "주 유 소",
+        "prices": {}
+    },
+    {
+        "name": "(주)실크로드주유소",
+        "address": "광주 광산구 사암로 866",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "SK에너지(주)고려셀프주유소",
+        "address": "광주 북구 설죽로 398",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "(유)광주개발",
+        "address": "광주 동구 남계길 4",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "(주)마이웨이8번가주유소",
+        "address": "광주 광산구 사암로 754",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "(주)옥산",
+        "address": "광주 서구 벽진동",
+        "category": "주 유 소",
+        "prices": {}
+    },
+    {
+        "name": "SK코끼리주유소",
+        "address": "광주 북구 서하로 77",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "(주)그린에너지",
+        "address": "광주 북구 서암대로 323",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "(유)삼성가스",
+        "address": "광주 북구 민주로 128",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "(주)케이피유통본촌주유소",
+        "address": "광주 북구 하서로 530",
+        "category": "GS주유소",
+        "prices": {}
+    },
+    {
+        "name": "SK시민주유소",
+        "address": "광주 광산구 고봉로 249",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "강남주유소",
+        "address": "광주 광산구 동곡로 104",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "남선석유(주)순양주유소",
+        "address": "광주 광산구 어등대로 667",
+        "category": "주 유 소",
+        "prices": {}
+    },
+    {
+        "name": "건국특수가스",
+        "address": "광주 광산구 체암로 1651",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "(주)유신산업대동주유소",
+        "address": "광주 남구 대남대로 153",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "도동재주유소",
+        "address": "광주 북구 동문대로 410",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "동부충전소",
+        "address": "광주 동구 남문로 615",
+        "category": "SK가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "디오충전소",
+        "address": "광주 북구 빛고을대로 656",
+        "category": "현대정유가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "가람주유소",
+        "address": "광주 서구 상무대로1206번길 3",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "유한회사 굿모닝주유소",
+        "address": "광주 광산구 북문대로 389",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "전송주유소",
+        "address": "광주 광산구 어등대로 583",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "차나라주유소",
+        "address": "광주 북구 동문대로 138",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "청정이엔지 주식회사",
+        "address": "광주 서구 상무자유로 18",
+        "category": "GS주유소",
+        "prices": {}
+    },
+    {
+        "name": "해피주유소",
+        "address": "광주 광산구 건재로 761",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "두암주유소",
+        "address": "광주 북구 군왕로 103",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "세본주유소",
+        "address": "광주 북구 용주로 21",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "북광주IC주유소",
+        "address": "광주 북구 하서로 678",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "웰컴신가주유소",
+        "address": "광주 광산구 목련로 375",
+        "category": "GS주유소",
+        "prices": {}
+    },
+    {
+        "name": "패밀리셀프주유소 주식회사",
+        "address": "광주 북구 우치로 670",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "천지주유소",
+        "address": "광주 광산구 영광로 3270",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "새론주유소",
+        "address": "광주 남구 대남대로 347",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "삼거리주유소",
+        "address": "광주 남구 서문대로 781",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "송촌주유소",
+        "address": "광주 광산구 동곡로",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "수완LPG충전소",
+        "address": "광주 광산구 수완동",
+        "category": "SK가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "어등산주유소",
+        "address": "광주 광산구 무진대로 68",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "이칠주유소",
+        "address": "광주 광산구 상무대로 378",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "우공주유소",
+        "address": "광주 광산구 영광로",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "제일가스",
+        "address": "광주 광산구 고봉로 241",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "대성가스(주)지평선LPG충전소",
+        "address": "광주 광산구 영광로 3777",
+        "category": "E1가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "벽진주유소",
+        "address": "광주 서구 상무대로 616",
+        "category": "주 유 소",
+        "prices": {}
+    },
+    {
+        "name": "미래LPG충전소",
+        "address": "광주 북구 임방울대로 983",
+        "category": "SK가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "빛고을로셀프주유소",
+        "address": "광주 북구 빛고을대로 657",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "매월유통단지주유소",
+        "address": "광주 서구 회재로 746",
+        "category": "주 유 소",
+        "prices": {}
+    },
+    {
+        "name": "수완LPG충전소",
+        "address": "광주 광산구 사암로 668",
+        "category": "현대정유가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "신공항엘피지충전소",
+        "address": "광주 광산구 상무대로 404",
+        "category": "E1가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "주식회사세광이앤지",
+        "address": "광주 광산구 본동로 538",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "운천주유소",
+        "address": "광주 서구 상무대로 758",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "주식회사 일곡우리주유소",
+        "address": "광주 북구 우치로 595",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "첨단현대주유소",
+        "address": "광주 광산구 비아동원촌길 89",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "주식회사 진솔가스",
+        "address": "광주 광산구 영광로",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "첨단북광주IC주유소",
+        "address": "광주 북구 삼소로 318",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "대광충전소",
+        "address": "광주 남구 송암로24번나길 14-20",
+        "category": "SK가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "대천주유소",
+        "address": "광주 광산구 용진로 599",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "덕양에너지 애경아름주유소",
+        "address": "광주 광산구 손재로 25",
+        "category": "GS주유소",
+        "prices": {}
+    },
+    {
+        "name": "매곡주유소",
+        "address": "광주 북구 서하로 86",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "동광주LPG충전소",
+        "address": "광주 북구 동문대로 560",
+        "category": "SK가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "삼도주유소",
+        "address": "광주 광산구 삼도로",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "서림주유소",
+        "address": "광주 북구 무등로 126",
+        "category": "GS주유소",
+        "prices": {}
+    },
+    {
+        "name": "상록 주유소",
+        "address": "광주 서구 상무대로 1180",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "서부에너지",
+        "address": "광주 서구 내방마을1길 15",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "송정현대주유소",
+        "address": "광주 광산구 송도로 104",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "신촌주유소",
+        "address": "광주 광산구 사암로",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "유한회사 동일에너지산업",
+        "address": "광주 광산구 동곡로 450",
+        "category": "GS주유소",
+        "prices": {}
+    },
+    {
+        "name": "유한회사예향에너지",
+        "address": "광주 광산구 고봉로 241",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "양촌주유소",
+        "address": "광주 남구 포충로 121",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "주식회사 미스두바이주유소",
+        "address": "광주 광산구 사암로 788",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "지산주유소",
+        "address": "광주 북구 양산택지로",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "용전IC주유소",
+        "address": "광주 북구 우치로 842",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "주식회사 제일에너지동곡점",
+        "address": "광주 광산구 동곡로 123",
+        "category": "SK가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "부경LPG충전소",
+        "address": "광주 광산구 장록동",
+        "category": "SK가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "다온(주)장미주유소",
+        "address": "광주 광산구 송도로 205",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "매월유통단지주유소",
+        "address": "광주 서구 회재로 746",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "에스주유소",
+        "address": "광주 광산구 노안삼도로 983",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "오일필드 주식회사 (광주지점)",
+        "address": "광주 광산구 사암로 127",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "임곡농협주유소",
+        "address": "광주 광산구 고봉로 566",
+        "category": "주 유 소",
+        "prices": {}
+    },
+    {
+        "name": "풍암대림주유소",
+        "address": "광주 서구 풍서좌로 83",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "대촌상주유소",
+        "address": "광주 남구 회재로",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "패밀리LPG충전소",
+        "address": "광주 북구 우치로 654",
+        "category": "쌍용S-oil가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "컨벤션주유소",
+        "address": "광주 서구 상무대로 714",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "대동에너지유한회사",
+        "address": "광주 서구 회재로",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "대남로 주유소",
+        "address": "광주 남구 대남대로 399",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "매일LPG충전소",
+        "address": "광주 북구 우치로 850",
+        "category": "SK가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "문화주유소",
+        "address": "광주 북구 동문대로 299",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "보배가스",
+        "address": "광주 광산구 노안삼도로 973",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "산월self주유소",
+        "address": "광주 광산구 북문대로 579",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "시민주유소",
+        "address": "광주 서구 눌재로 328",
+        "category": "GS주유소",
+        "prices": {}
+    },
+    {
+        "name": "용전주유소",
+        "address": "광주 북구 우치로 809",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "장덕셀프주유소",
+        "address": "광주 광산구 왕버들로 59",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "주식회사광주한길가스",
+        "address": "광주 북구 민주로 455",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "주식회사 버들산업",
+        "address": "광주 광산구 동곡로 510",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "주식회사 레드카펫주유소",
+        "address": "광주 북구 용봉로 24",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "주식회사 세광이앤지",
+        "address": "광주 광산구 본동로 538",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "주식회사 일프로주유소",
+        "address": "광주 서구 운천로 206",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "진영주유소",
+        "address": "광주 광산구 송도로 292",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "행복가득효천주유소",
+        "address": "광주 남구 서문대로 37",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "평화셀프주유소/주식회사 반디컴퍼니",
+        "address": "광주 북구 경열로 257",
+        "category": "주 유 소",
+        "prices": {}
+    },
+    {
+        "name": "하이가스",
+        "address": "광주 동구 소태길 72",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "한성골드주유소",
+        "address": "광주 광산구 동곡로 407",
+        "category": "GS주유소",
+        "prices": {}
+    },
+    {
+        "name": "북문대로주유소",
+        "address": "광주 광산구 북문대로 319",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "순양주유소",
+        "address": "광주 광산구 어등대로 667",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "슈퍼크린주유소",
+        "address": "광주 광산구 상무대로 372",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "영진 광산업 충전소",
+        "address": "광주 북구 삼소로 330",
+        "category": "L P G",
+        "prices": {}
+    },
+    {
+        "name": "하남현대주유소",
+        "address": "광주 광산구 안청동",
+        "category": "현대정유오일뱅크",
+        "prices": {}
+    },
+    {
+        "name": "한일LPG충전소",
+        "address": "광주 광산구 북문대로420번길 92",
+        "category": "SK가스충전소",
+        "prices": {}
+    },
+    {
+        "name": "코끼리주유소",
+        "address": "광주 북구 서하로 77",
+        "category": "SK주유소",
+        "prices": {}
+    },
+    {
+        "name": "푸른솔주유소",
+        "address": "광주 광산구 고봉로 905",
+        "category": "쌍용S-oil주유소",
+        "prices": {}
+    },
+    {
+        "name": "화력주유소",
+        "address": "광주 남구 회재로 338",
+        "category": "GS주유소",
+        "prices": {}
+    }
+]
