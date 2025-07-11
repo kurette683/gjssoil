@@ -1,1 +1,1 @@
-Fix: Correct YAML syntax and sed escaping in deploy.yml
+Add gjssoil_data.json for frontend consumption
