@@ -149,7 +149,6 @@
 
                 if (!Array.isArray(stores)) throw new Error("JSON 데이터 형식이 올바르지 않습니다.");
 
-                // 데이터에 거리 정보 추가
                 const storesWithDistance = stores.map(store => {
                     const lat = parseFloat(store.GIS_Y_COOR);
                     const lng = parseFloat(store.GIS_X_COOR);
