@@ -1,1 +1,1 @@
-Add gjssoil_data.json for frontend consumption
+Feature: Generate gjssoil_data.json and gjssoil_data.csv with prices from detailById API
