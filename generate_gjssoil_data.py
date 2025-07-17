@@ -25,13 +25,9 @@ def generate_gjssoil_data():
         print(f"CSV 파일 읽기 중 오류 발생: {e}")
         return
 
-    # TM128 to WGS84 (EPSG:4326) transformer
-    # 블로그에서 제공된 TM128 정의 사용
-    tm128_proj4 = "+proj=tmerc +lat_0=38 +lon_0=128 +k=0.9999 +x_0=400000 +y_0=600000 +ellps=GRS80 +units=m +no_defs"
-    crs_tm128 = CRS.from_proj4(tm128_proj4)
-    crs_wgs84 = CRS("epsg:4326")
-
-    transformer = Transformer.from_crs(crs_tm128, crs_wgs84, always_xy=True)
+    # KATEC (EPSG:5179) to WGS84 (EPSG:4326) transformer
+    # 오피넷 TM 좌표는 KATEC (EPSG:5179)을 사용합니다.
+    transformer = Transformer.from_crs("epsg:5179", "epsg:4326", always_xy=True)
 
     processed_stores = []
     

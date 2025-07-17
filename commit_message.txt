@@ -1,1 +1,1 @@
-Fix: Use explicit TM128 proj4 definition for coordinate transformation
+Fix: Try EPSG:5179 for coordinate transformation
