@@ -1,1 +1,1 @@
-Feat: Schedule daily data updates
+Feat: Update website text content
