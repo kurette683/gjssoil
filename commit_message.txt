@@ -1,1 +1,1 @@
-Fix: Remove towgs84 from TM128 proj4 definition
+Docs: Add project summary document
