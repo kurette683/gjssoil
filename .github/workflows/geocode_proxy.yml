@@ -1,0 +1,40 @@
+name: Geocode Proxy
+
+on:
+  workflow_dispatch:
+    inputs:
+      address:
+        description: 'Address to geocode'
+        required: true
+        type: string
+
+jobs:
+  geocode:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run geocoding script
+        id: geocode_result
+        run: |
+          python gjssoil/geocode_proxy.py "${{ github.event.inputs.address }}" > geocode_output.json
+        env:
+          KAKAO_API_KEY: ${{ secrets.KAKAO_API_KEY }}
+
+      - name: Get geocoding output
+        id: get_output
+        run: |
+          echo "output=$(cat geocode_output.json)" >> $GITHUB_OUTPUT
+
+    outputs:
+      geocode_data:
+        value: ${{ steps.get_output.outputs.output }}
