@@ -25,19 +25,13 @@ def generate_gjssoil_data():
         print(f"CSV 파일 읽기 중 오류 발생: {e}")
         return
 
-    # KATEC (Korea Transverse Mercator) to WGS84 (EPSG:4326) transformer
-    # 블로그에서 제공된 KATEC 정의 사용
-    # +towgs84 파라미터는 3개 또는 7개 인자를 가질 수 있습니다.
-    # 7개 인자: dx,dy,dz,rx,ry,rz,s (translation, rotation, scale)
-    # 3개 인자: dx,dy,dz (translation)
-    # 블로그의 정의는 7개 인자를 사용합니다.
-    # pyproj 2.x 버전부터는 CRS.from_proj4를 사용합니다.
-    # KATEC 정의 (블로그 참조)
-    katec_proj4 = "+proj=tmerc +lat_0=38 +lon_0=127 +k=1 +x_0=200000 +y_0=500000 +ellps=bessel +units=m +no_defs +towgs84=-115.80,474.99,674.11,1.16,-2.31,-1.63,6.43"
-    crs_katec = CRS.from_proj4(katec_proj4)
+    # TM128 to WGS84 (EPSG:4326) transformer
+    # 블로그에서 제공된 TM128 정의 사용
+    tm128_proj4 = "+proj=tmerc +lat_0=38 +lon_0=128 +k=0.9999 +x_0=400000 +y_0=600000 +ellps=GRS80 +units=m +no_defs"
+    crs_tm128 = CRS.from_proj4(tm128_proj4)
     crs_wgs84 = CRS("epsg:4326")
 
-    transformer = Transformer.from_crs(crs_katec, crs_wgs84, always_xy=True)
+    transformer = Transformer.from_crs(crs_tm128, crs_wgs84, always_xy=True)
 
     processed_stores = []
     

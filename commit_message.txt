@@ -1,1 +1,1 @@
-Fix: Use explicit KATEC proj4 definition for coordinate transformation
+Fix: Use explicit TM128 proj4 definition for coordinate transformation
