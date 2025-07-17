@@ -1,1 +1,1 @@
-Feat: Update website text content
+Fix: Correct python script paths in deploy.yml
