@@ -1,0 +1,77 @@
+---# gjssoil 프로젝트 데이터 처리 및 웹페이지 게시 워크플로우 요약
+
+## 1. 원본 데이터 소스
+
+*   **광주광역시_상생카드가맹점현황_20240915.csv:**
+    *   출처: 공공데이터포털 (사용자 직접 다운로드)
+    *   내용: 광주 상생카드 가맹점 전체 목록
+    *   주요 컬럼: "업체명", "업종명", "업체주소", "데이터기준일"
+
+*   **광주전체주유소충전소.csv:**
+    *   출처: 오피넷 웹페이지 (사용자 직접 저장)
+    *   내용: 오피넷에서 제공하는 광주광역시 전체 주유소/충전소 목록
+    *   주요 컬럼: "지역", "상호", "주소", "상표", "전화번호", "셀프여부", "고급휘발유", "휘발유", "경유", "실내등유", "LPG"
+
+## 2. 사용자 데이터 수정 단계 (수동)
+
+*   **목적:** 광주 상생카드 가맹점 데이터와 오피넷 주유소/충전소 데이터를 비교하여 정확한 처리 대상 목록을 생성합니다.
+*   **입력:**
+    *   `광주광역시_상생카드가맹점현황_20240915.csv`
+    *   `광주전체주유소충전소.csv`
+*   **처리 과정:**
+    *   `광주광역시_상생카드가맹점현황` 데이터에서 엑셀 필터를 사용하여 '업종'이 주유소 또는 충전소인 업체만 남깁니다.
+    *   오피넷(`광주전체주유소충전소`) 자료와 비교하여 업체명과 주소가 일치하는 것만 남깁니다.
+    *   업체명이 다른 경우, 오피넷 자료를 기준으로 상생카드 가맹점 자료의 업체명을 수정합니다.
+*   **출력:** `gjssoil_stores_mod.csv` (수정된 주유소/충전소 목록, 93개 업체)
+
+## 3. 데이터 처리 단계 (Python 스크립트)
+
+### 3.1. 1단계: 처리 대상 주유소 목록 생성 (`matching_stn_info.py`)
+
+*   **목적:** 수동으로 수정한 `gjssoil_stores_mod.csv` 파일에서 주유소 상호 목록을 추출합니다.
+*   **입력:** `gjssoil_stores_mod.csv`
+*   **처리 과정:**
+    *   `gjssoil_stores_mod.csv` 파일을 로드합니다.
+    *   '업체명' 컬럼의 데이터를 추출하여 목록으로 만듭니다.
+*   **출력:** `gjssoil_list.csv` (매칭된 주유소 상호 목록)
+
+### 3.2. 2단계: 매칭된 주유소 상세 정보 가져오기 (`get_more_stn_info.py`)
+
+*   **목적:** `gjssoil_list.csv`에 있는 상호 목록을 바탕으로 오피넷 API (`searchByName.do`)를 호출하여 각 주유소의 상세 정보(UNI_ID, 주소, 좌표 등)를 가져옵니다.
+*   **입력:** `gjssoil_list.csv`
+*   **처리 과정:**
+    *   `gjssoil_list.csv`를 로드합니다.
+    *   각 상호에 대해 오피넷 API `searchByName.do`를 호출합니다. (광주광역시 시도 코드("16")로 검색 범위 제한)
+    *   API 응답에서 `UNI_ID`, `POLL_DIV_CD`, `OS_NM`, `NEW_ADR`, `SIGUNCD`, `LPG_YN`, `GIS_X_COOR`, `GIS_Y_COOR` 등의 정보를 추출합니다.
+    *   추출된 정보 중 `SIGUNCD`가 광주광역시의 시군구 코드("1601", "1602" 등)에 해당하는 경우만 선택합니다.
+*   **출력:** `gjssoil_info.csv` (매칭된 주유소의 상세 정보, `UNI_ID` 포함)
+
+### 3.3. 3단계: 가격 정보 통합 및 최종 데이터 생성 (`generate_gjssoil_data.py`)
+
+*   **목적:** `gjssoil_info.csv`에 있는 주유소의 `UNI_ID`를 사용하여 오피넷 API (`detailById.do`)를 호출하여 최신 유가 정보를 가져오고, 모든 정보를 통합하여 웹페이지가 사용할 최종 JSON 및 CSV 파일을 생성합니다.
+*   **입력:** `gjssoil_info.csv`
+*   **처리 과정:**
+    *   `gjssoil_info.csv`를 로드합니다.
+    *   각 주유소의 `UNI_ID`를 사용하여 오피넷 API `detailById.do`를 호출합니다.
+    *   API 응답에서 `OIL_PRICE` 리스트를 파싱하여 휘발유(B027), 경유(D047), LPG(K015), 고급휘발유(B034), 실내등유(C004) 등의 가격을 추출합니다.
+    *   추출된 가격 정보를 주유소 상세 정보와 결합합니다.
+*   **출력:**
+    *   `gjssoil_data.json` (웹페이지가 직접 불러올 JSON 형식의 데이터)
+    *   `gjssoil_data.csv` (데이터 확인 및 디버깅을 위한 CSV 형식의 데이터)
+
+## 4. 웹페이지 게시 단계 (GitHub Actions & GitHub Pages)
+
+*   **목적:** 생성된 최종 데이터 파일(`gjssoil_data.json`)과 웹 애플리케이션 코드(`index.html`)를 GitHub Pages를 통해 웹에 배포합니다.
+*   **입력:**
+    *   `index.html` (웹 애플리케이션 코드)
+    *   `gjssoil_data.json` (최종 주유소 데이터)
+    *   `.github/workflows/deploy.yml` (GitHub Actions 워크플로우 정의)
+*   **처리 과정:**
+    *   사용자는 로컬에서 Python 스크립트들을 실행하여 `gjssoil_list.csv`, `gjssoil_info.csv`, `gjssoil_data.json`, `gjssoil_data.csv` 파일을 생성합니다.
+    *   생성된 파일들과 `index.html`의 변경사항을 Git에 커밋하고 GitHub 저장소의 `main` 브랜치로 푸시합니다.
+    *   GitHub Actions 워크플로우(`deploy.yml`)가 `main` 브랜치에 푸시 이벤트가 발생하면 자동으로 실행됩니다.
+    *   워크플로우는 `index.html` 내의 카카오 API 키 플레이스홀더를 GitHub Secrets에 저장된 실제 키로 치환합니다.
+    *   워크플로우는 프로젝트의 모든 파일(생성된 `gjssoil_data.json` 포함)을 GitHub Pages로 배포합니다.
+*   **결과:** `https://kurette683.github.io/gjssoil/` 주소로 웹 서비스가 라이브됩니다.
+
+---
