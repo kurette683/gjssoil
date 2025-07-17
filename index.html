@@ -72,7 +72,7 @@
             const dLon = (lon2 - lon1) * Math.PI / 180;
             const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
             const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            return R * c;
+            return R * c; // Distance in km
         };
 
         async function fetchJsonData() {
@@ -126,8 +126,8 @@
             markers.forEach(marker => marker.setMap(null));
             markers = [];
             data.forEach(store => {
-                if (!store.GIS_Y_COOR || !store.GIS_X_COOR) return;
-                const position = new kakao.maps.LatLng(store.GIS_Y_COOR, store.GIS_X_COOR);
+                if (!store.LAT || !store.LNG) return; // Use LAT/LNG from JSON
+                const position = new kakao.maps.LatLng(store.LAT, store.LNG);
                 const marker = new kakao.maps.Marker({ position: position });
                 const priceGasoline = store.prices['B027'] ? `${parseInt(store.prices['B027']).toLocaleString()}원` : '-';
                 const iwContent = `<div style="padding:5px; font-size:12px; width: 180px;"><strong style="display:block;">${store.OS_NM}</strong><span>휘발유: ${priceGasoline}</span></div>`;
@@ -144,7 +144,6 @@
             if (sortBy === 'distance') {
                 if (userLocation === null) {
                     showStatusMessage("거리순 정렬을 위해 '현위치' 버튼을 눌러 위치 정보를 허용해주세요.");
-                    // Do not sort if location is not available
                 } else {
                     sortedData.sort((a, b) => (a.distance ?? 9999) - (b.distance ?? 9999));
                 }
@@ -164,7 +163,7 @@
             if (allStoresData.length > 0) {
                 allStoresData = allStoresData.map(store => {
                     const distance = userLocation
-                        ? calculateDistance(userLocation.lat, userLocation.lng, store.GIS_Y_COOR, store.GIS_X_COOR)
+                        ? calculateDistance(userLocation.lat, userLocation.lng, store.LAT, store.LNG) // Use LAT/LNG
                         : null;
                     return { ...store, distance };
                 });

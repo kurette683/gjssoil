@@ -2,11 +2,12 @@ import pandas as pd
 import requests
 import json
 import time
+from pyproj import Transformer
 
 def generate_gjssoil_data():
     """
     gjssoil_info.csv의 UNI_ID를 바탕으로 오피넷 API에서 가격 정보를 조회하고
-    gjssoil_data.json 및 gjssoil_data.csv로 저장합니다.
+    TM 좌표를 WGS84 위경도로 변환하여 gjssoil_data.json 및 gjssoil_data.csv로 저장합니다.
     """
     input_info_path = "gjssoil_info.csv"
     output_json_path = "gjssoil_data.json"
@@ -23,6 +24,10 @@ def generate_gjssoil_data():
     except Exception as e:
         print(f"CSV 파일 읽기 중 오류 발생: {e}")
         return
+
+    # TM (EPSG:5179) to WGS84 (EPSG:4326) transformer
+    # 오피넷 TM 좌표는 중부원점 (EPSG:5179)을 사용합니다.
+    transformer = Transformer.from_crs("epsg:5179", "epsg:4326", always_xy=True)
 
     processed_stores = []
     
@@ -69,14 +74,19 @@ def generate_gjssoil_data():
         gis_x = row["GIS_X_COOR"]
         gis_y = row["GIS_Y_COOR"]
 
+        # Convert TM coordinates to WGS84 latitude and longitude
+        lon, lat = transformer.transform(gis_x, gis_y)
+
         prices_from_api = fetch_price_by_id(uni_id)
         
         processed_stores.append({
             "OS_NM": store_name,
             "NEW_ADR": address,
             "POLL_DIV_CD": category,
-            "GIS_X_COOR": gis_x,
-            "GIS_Y_COOR": gis_y,
+            "GIS_X_COOR": gis_x, # Keep original TM for reference if needed
+            "GIS_Y_COOR": gis_y, # Keep original TM for reference if needed
+            "LAT": lat, # Add WGS84 Latitude
+            "LNG": lon, # Add WGS84 Longitude
             "prices": prices_from_api,
             "UNI_ID": uni_id
         })
@@ -97,6 +107,8 @@ def generate_gjssoil_data():
                 "POLL_DIV_CD": store["POLL_DIV_CD"],
                 "GIS_X_COOR": store["GIS_X_COOR"],
                 "GIS_Y_COOR": store["GIS_Y_COOR"],
+                "LAT": store["LAT"],
+                "LNG": store["LNG"],
                 "PRICE_B027": store["prices"].get("B027"),
                 "PRICE_D047": store["prices"].get("D047"),
                 "PRICE_K015": store["prices"].get("K015"),

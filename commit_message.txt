@@ -1,1 +1,1 @@
-Feat: Add relocate button and improve location handling
+Fix: Use WGS84 LAT/LNG from JSON for distance and map
