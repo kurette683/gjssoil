@@ -1,1 +1,1 @@
-Fix: Use WGS84 LAT/LNG from JSON for distance and map
+Fix: Correctly replace KAKAO_API_KEY in deploy.yml

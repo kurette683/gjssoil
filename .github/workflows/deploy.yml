@@ -14,7 +14,7 @@ jobs:
 
       - name: Replace API keys
         run: |
-          sed -i "s|\[YOUR_KAKAO_API_KEY\]|${{ secrets.KAKAO_API_KEY }}|g" index.html
+          sed -i "s|appkey=YOUR_KAKAO_API_KEY|appkey=${{ secrets.KAKAO_API_KEY }}|g" index.html
           
                   
       - name: Deploy to GitHub Pages
