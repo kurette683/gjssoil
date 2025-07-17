@@ -39,7 +39,8 @@ def generate_gjssoil_data():
             "id": uni_id
         }
         try:
-            response = requests.get(url, params=params, timeout=10)
+            print(f"API 호출 시도: UNI_ID {uni_id}")
+            response = requests.get(url, params=params, timeout=30) # 타임아웃 30초로 증가
             response.raise_for_status()
             data = response.json()
             prices = {}
@@ -54,15 +55,16 @@ def generate_gjssoil_data():
                     price = oil.get("PRICE")
                     if prod_cd and price is not None:
                         prices[prod_cd] = price
+                print(f"API 호출 성공: UNI_ID {uni_id}")
                 return prices
             else:
                 print(f"경고: UNI_ID '{uni_id}'에 대한 OIL_PRICE 정보가 없습니다. 응답: {data}")
                 return {}
         except requests.exceptions.RequestException as e:
-            print(f"가격 정보 조회 실패 (UNI_ID '{uni_id}'): {e}")
+            print(f"오류: 가격 정보 조회 실패 (UNI_ID '{uni_id}'): {e}")
             return {}
         except (ValueError, IndexError) as e:
-            print(f"데이터 처리 중 오류 발생 (UNI_ID '{uni_id}'): {e}. 응답: {data}")
+            print(f"오류: 데이터 처리 중 오류 발생 (UNI_ID '{uni_id}'): {e}. 응답: {data}")
             return {}
 
     print("오피넷 API를 통해 가격 정보 수집 중...\n")
@@ -90,7 +92,7 @@ def generate_gjssoil_data():
             "prices": prices_from_api,
             "UNI_ID": uni_id
         })
-        time.sleep(0.1) # API 호출 간격 조절
+        time.sleep(0.5) # API 호출 간격 0.5초로 증가
 
     print(f"총 {len(processed_stores)}개의 업체 정보에 가격 정보 추가 완료.\n")
 
