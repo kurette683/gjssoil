@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 import json
 import time
-from pyproj import Transformer
+from pyproj import Transformer, CRS
 
 def generate_gjssoil_data():
     """
@@ -25,9 +25,19 @@ def generate_gjssoil_data():
         print(f"CSV 파일 읽기 중 오류 발생: {e}")
         return
 
-    # KATEC (EPSG:5186) to WGS84 (EPSG:4326) transformer
-    # 오피넷 TM 좌표는 KATEC (EPSG:5186)을 사용합니다.
-    transformer = Transformer.from_crs("epsg:5186", "epsg:4326", always_xy=True)
+    # KATEC (Korea Transverse Mercator) to WGS84 (EPSG:4326) transformer
+    # 블로그에서 제공된 KATEC 정의 사용
+    # +towgs84 파라미터는 3개 또는 7개 인자를 가질 수 있습니다.
+    # 7개 인자: dx,dy,dz,rx,ry,rz,s (translation, rotation, scale)
+    # 3개 인자: dx,dy,dz (translation)
+    # 블로그의 정의는 7개 인자를 사용합니다.
+    # pyproj 2.x 버전부터는 CRS.from_proj4를 사용합니다.
+    # KATEC 정의 (블로그 참조)
+    katec_proj4 = "+proj=tmerc +lat_0=38 +lon_0=127 +k=1 +x_0=200000 +y_0=500000 +ellps=bessel +units=m +no_defs +towgs84=-115.80,474.99,674.11,1.16,-2.31,-1.63,6.43"
+    crs_katec = CRS.from_proj4(katec_proj4)
+    crs_wgs84 = CRS("epsg:4326")
+
+    transformer = Transformer.from_crs(crs_katec, crs_wgs84, always_xy=True)
 
     processed_stores = []
     
@@ -78,6 +88,7 @@ def generate_gjssoil_data():
 
         # Convert TM coordinates to WGS84 latitude and longitude
         lon, lat = transformer.transform(gis_x, gis_y)
+        print(f"변환된 좌표: (LAT: {lat}, LNG: {lon}) for {store_name}")
 
         prices_from_api = fetch_price_by_id(uni_id)
         
