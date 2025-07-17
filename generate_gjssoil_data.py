@@ -11,7 +11,7 @@ def generate_gjssoil_data():
     """
     input_info_path = "gjssoil_info.csv"
     output_json_path = "gjssoil_data.json"
-    output_csv_path = "gjssoil_data.csv"
+    output_csv_path = "gjssoil_path.csv"
     opinet_api_key = "F250708581" # 여기에 실제 오피넷 API 키를 입력해야 합니다.
 
     print(f"'{input_info_path}' 파일 읽는 중...\n")
@@ -25,9 +25,9 @@ def generate_gjssoil_data():
         print(f"CSV 파일 읽기 중 오류 발생: {e}")
         return
 
-    # TM (EPSG:5179) to WGS84 (EPSG:4326) transformer
-    # 오피넷 TM 좌표는 중부원점 (EPSG:5179)을 사용합니다.
-    transformer = Transformer.from_crs("epsg:5179", "epsg:4326", always_xy=True)
+    # KATEC (EPSG:5186) to WGS84 (EPSG:4326) transformer
+    # 오피넷 TM 좌표는 KATEC (EPSG:5186)을 사용합니다.
+    transformer = Transformer.from_crs("epsg:5186", "epsg:4326", always_xy=True)
 
     processed_stores = []
     

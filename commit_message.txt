@@ -1,1 +1,1 @@
-Fix: Correctly replace KAKAO_API_KEY in deploy.yml
+Revert: Remove geocode_proxy related changes from index.html
