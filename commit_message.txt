@@ -1,1 +1,1 @@
-Fix: Correct python script paths in deploy.yml
+Fix: Improve API call robustness and logging in generate_gjssoil_data.py
