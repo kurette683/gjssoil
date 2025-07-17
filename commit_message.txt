@@ -1,1 +1,1 @@
-Revert: Remove geocode_proxy related changes from index.html
+Feat: Remove map functionality and related API key dependency
