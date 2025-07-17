@@ -1,933 +1,1115 @@
 [
     {
-        "name": "오일필드(주)광주지점",
-        "address": "광주 광산구 사암로 127 (우산동)",
-        "category": "ETC",
+        "OS_NM": "오일필드(주)광주지점",
+        "NEW_ADR": "광주 광산구 사암로 127 (우산동)",
+        "POLL_DIV_CD": "ETC",
+        "GIS_X_COOR": 291514.38018,
+        "GIS_Y_COOR": 284775.33582,
         "prices": {
             "B027": 1594,
             "D047": 1454
         },
-        "uni_id": "A0020473"
+        "UNI_ID": "A0020473"
     },
     {
-        "name": "(주)버들주유소",
-        "address": "광주광역시 광산구 동곡로 510",
-        "category": "SKE",
+        "OS_NM": "(주)버들주유소",
+        "NEW_ADR": "광주광역시 광산구 동곡로 510",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 288646.95553,
+        "GIS_Y_COOR": 281576.4216,
         "prices": {
             "B034": 1854,
             "B027": 1597,
             "D047": 1449
         },
-        "uni_id": "A0033156"
+        "UNI_ID": "A0033156"
     },
     {
-        "name": "어등산주유소",
-        "address": "광주 광산구 무진대로 68",
-        "category": "HDO",
+        "OS_NM": "어등산주유소",
+        "NEW_ADR": "광주 광산구 무진대로 68",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 289825.0,
+        "GIS_Y_COOR": 285230.0,
         "prices": {
             "B027": 1599,
             "D047": 1515
         },
-        "uni_id": "A0020424"
+        "UNI_ID": "A0020424"
     },
     {
-        "name": "첨단태양주유소",
-        "address": "광주 광산구 비아동원촌길 89 (비아동)",
-        "category": "HDO",
+        "OS_NM": "첨단태양주유소",
+        "NEW_ADR": "광주 광산구 비아동원촌길 89 (비아동)",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 293650.0,
+        "GIS_Y_COOR": 292034.0,
         "prices": {
             "B027": 1605,
             "D047": 1465
         },
-        "uni_id": "A0020255"
+        "UNI_ID": "A0020255"
     },
     {
-        "name": "더그린㈜ 푸른주유소",
-        "address": "광주 광산구 동곡로 104",
-        "category": "GSC",
+        "OS_NM": "더그린㈜ 푸른주유소",
+        "NEW_ADR": "광주 광산구 동곡로 104",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 288321.10681,
+        "GIS_Y_COOR": 277791.90479,
         "prices": {
             "B034": 1795,
             "B027": 1605,
             "D047": 1465
         },
-        "uni_id": "A0021057"
+        "UNI_ID": "A0021057"
     },
     {
-        "name": "산월Self주유소",
-        "address": "광주 광산구 북문대로 579",
-        "category": "HDO",
+        "OS_NM": "산월Self주유소",
+        "NEW_ADR": "광주 광산구 북문대로 579",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 294299.2,
+        "GIS_Y_COOR": 290098.0,
         "prices": {
             "B027": 1617,
             "D047": 1477
         },
-        "uni_id": "A0020205"
+        "UNI_ID": "A0020205"
     },
     {
-        "name": "한성골드주유소",
-        "address": "광주 광산구 동곡로 407 (월전동)",
-        "category": "GSC",
+        "OS_NM": "한성골드주유소",
+        "NEW_ADR": "광주 광산구 동곡로 407 (월전동)",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 289018.0,
+        "GIS_Y_COOR": 280713.0,
         "prices": {
             "B027": 1625,
             "D047": 1479,
             "C004": 1400
         },
-        "uni_id": "A0020387"
+        "UNI_ID": "A0020387"
     },
     {
-        "name": "송정현대주유소",
-        "address": "광주 광산구 송도로 104 (도산동)",
-        "category": "HDO",
+        "OS_NM": "송정현대주유소",
+        "NEW_ADR": "광주 광산구 송도로 104 (도산동)",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 289762.8,
+        "GIS_Y_COOR": 281489.0,
         "prices": {
             "B027": 1649,
             "D047": 1529
         },
-        "uni_id": "A0020310"
+        "UNI_ID": "A0020310"
     },
     {
-        "name": "삼도주유소",
-        "address": "광주 광산구 삼도로 327",
-        "category": "SKE",
+        "OS_NM": "삼도주유소",
+        "NEW_ADR": "광주 광산구 삼도로 327",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 281669.00252,
+        "GIS_Y_COOR": 285727.99561,
         "prices": {
             "D047": 1489,
             "B027": 1629,
             "C004": 1300
         },
-        "uni_id": "A0020453"
+        "UNI_ID": "A0020453"
     },
     {
-        "name": "웰컴신가주유소",
-        "address": "광주 광산구 목련로 375 (신가동)",
-        "category": "GSC",
+        "OS_NM": "웰컴신가주유소",
+        "NEW_ADR": "광주 광산구 목련로 375 (신가동)",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 293842.9,
+        "GIS_Y_COOR": 287627.2,
         "prices": {
             "B027": 1629,
             "D047": 1485,
             "B034": 1785
         },
-        "uni_id": "A0020631"
+        "UNI_ID": "A0020631"
     },
     {
-        "name": "SK시민주유소",
-        "address": "광주 광산구 고봉로 249 (장수동)",
-        "category": "SKE",
+        "OS_NM": "SK시민주유소",
+        "NEW_ADR": "광주 광산구 고봉로 249 (장수동)",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 289371.1317,
+        "GIS_Y_COOR": 288103.7937,
         "prices": {
             "C004": 1350,
             "B027": 1629,
             "D047": 1489
         },
-        "uni_id": "A0020269"
+        "UNI_ID": "A0020269"
     },
     {
-        "name": "에스주유소",
-        "address": "광주 광산구 노안삼도로 983",
-        "category": "SKE",
+        "OS_NM": "에스주유소",
+        "NEW_ADR": "광주 광산구 노안삼도로 983",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 279926.27902,
+        "GIS_Y_COOR": 281684.54975,
         "prices": {},
-        "uni_id": "A0020445"
+        "UNI_ID": "A0020445"
     },
     {
-        "name": "순양주유소",
-        "address": "광주 광산구 어등대로 667",
-        "category": "SOL",
+        "OS_NM": "순양주유소",
+        "NEW_ADR": "광주 광산구 어등대로 667",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 290026.0,
+        "GIS_Y_COOR": 283529.0,
         "prices": {
             "B027": 1638,
             "D047": 1498
         },
-        "uni_id": "A0019768"
+        "UNI_ID": "A0019768"
     },
     {
-        "name": "천지주유소",
-        "address": "광주 광산구 영광로 3270  (삼거동)",
-        "category": "SKE",
+        "OS_NM": "천지주유소",
+        "NEW_ADR": "광주 광산구 영광로 3270  (삼거동)",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 278720.3,
+        "GIS_Y_COOR": 286251.3,
         "prices": {
             "B027": 1639,
             "D047": 1529,
             "C004": 1250
         },
-        "uni_id": "A0020254"
+        "UNI_ID": "A0020254"
     },
     {
-        "name": "임곡농협주유소",
-        "address": "광주 광산구 고봉로 565 (산막동)",
-        "category": "NHO",
+        "OS_NM": "임곡농협주유소",
+        "NEW_ADR": "광주 광산구 고봉로 565 (산막동)",
+        "POLL_DIV_CD": "NHO",
+        "GIS_X_COOR": 287186.47417,
+        "GIS_Y_COOR": 290192.78245,
         "prices": {
             "B027": 1639,
             "D047": 1499,
             "C004": 1300
         },
-        "uni_id": "A0020479"
+        "UNI_ID": "A0020479"
     },
     {
-        "name": "(주)스마일셀프주유소",
-        "address": "광주 광산구 고봉로 541 (산막동)",
-        "category": "SKE",
+        "OS_NM": "(주)스마일셀프주유소",
+        "NEW_ADR": "광주 광산구 고봉로 541 (산막동)",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 287384.05039,
+        "GIS_Y_COOR": 290091.74941,
         "prices": {
             "D047": 1499,
             "B027": 1639
         },
-        "uni_id": "A0020463"
+        "UNI_ID": "A0020463"
     },
     {
-        "name": "신촌주유소",
-        "address": "광주 광산구 사암로 63 (신촌동)",
-        "category": "SOL",
+        "OS_NM": "신촌주유소",
+        "NEW_ADR": "광주 광산구 사암로 63 (신촌동)",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 291505.81781,
+        "GIS_Y_COOR": 284114.60485,
         "prices": {
             "B027": 1639,
             "D047": 1519,
             "C004": 1450
         },
-        "uni_id": "A0020454"
+        "UNI_ID": "A0020454"
     },
     {
-        "name": "우공주유소",
-        "address": "광주 광산구 영광로 3492",
-        "category": "HDO",
+        "OS_NM": "우공주유소",
+        "NEW_ADR": "광주 광산구 영광로 3492",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 280719.0,
+        "GIS_Y_COOR": 285343.0,
         "prices": {
             "B027": 1649,
             "D047": 1499,
             "C004": 1600
         },
-        "uni_id": "A0020423"
+        "UNI_ID": "A0020423"
     },
     {
-        "name": "남선석유(주) 평동그린주유소",
-        "address": "광주 광산구 동곡로 645",
-        "category": "SOL",
+        "OS_NM": "남선석유(주) 평동그린주유소",
+        "NEW_ADR": "광주 광산구 동곡로 645",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 288635.3,
+        "GIS_Y_COOR": 282949.5,
         "prices": {
             "B034": 1869,
             "B027": 1652,
             "D047": 1497
         },
-        "uni_id": "A0020221"
+        "UNI_ID": "A0020221"
     },
     {
-        "name": "애경아름주유소",
-        "address": "광주 광산구 손재로 25",
-        "category": "GSC",
+        "OS_NM": "애경아름주유소",
+        "NEW_ADR": "광주 광산구 손재로 25",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 290972.0,
+        "GIS_Y_COOR": 285813.0,
         "prices": {
             "B034": 1897,
             "B027": 1653,
             "D047": 1493,
             "C004": 1500
         },
-        "uni_id": "A0020234"
+        "UNI_ID": "A0020234"
     },
     {
-        "name": "해피주유소",
-        "address": "광주 광산구 건재로 761",
-        "category": "SOL",
+        "OS_NM": "해피주유소",
+        "NEW_ADR": "광주 광산구 건재로 761",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 287723.49714,
+        "GIS_Y_COOR": 276570.38598,
         "prices": {
             "B027": 1657,
             "D047": 1497
         },
-        "uni_id": "A0019785"
+        "UNI_ID": "A0019785"
     },
     {
-        "name": "대천주유소",
-        "address": "광주 광산구 용진로 599",
-        "category": "SOL",
+        "OS_NM": "대천주유소",
+        "NEW_ADR": "광주 광산구 용진로 599",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 286088.2,
+        "GIS_Y_COOR": 288982.7,
         "prices": {
             "B027": 1669,
             "D047": 1519
         },
-        "uni_id": "A0020302"
+        "UNI_ID": "A0020302"
     },
     {
-        "name": "푸른솔주유소",
-        "address": "광주광역시 광산구 고봉로 905 (광산동)",
-        "category": "SOL",
+        "OS_NM": "푸른솔주유소",
+        "NEW_ADR": "광주광역시 광산구 고봉로 905 (광산동)",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 285078.0,
+        "GIS_Y_COOR": 292582.0,
         "prices": {
             "B027": 1659,
             "D047": 1519,
             "C004": 1350
         },
-        "uni_id": "A0020425"
+        "UNI_ID": "A0020425"
     },
     {
-        "name": "장덕셀프주유소",
-        "address": "광주 광산구 왕버들로 59",
-        "category": "HDO",
+        "OS_NM": "장덕셀프주유소",
+        "NEW_ADR": "광주 광산구 왕버들로 59",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 292507.4218,
+        "GIS_Y_COOR": 289939.99731,
         "prices": {
             "B034": 1899,
             "B027": 1659,
             "D047": 1529
         },
-        "uni_id": "A0020599"
+        "UNI_ID": "A0020599"
     },
     {
-        "name": "(주)명진주유소",
-        "address": "광주 광산구 용아로 419",
-        "category": "GSC",
+        "OS_NM": "(주)명진주유소",
+        "NEW_ADR": "광주 광산구 용아로 419",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 291312.32453,
+        "GIS_Y_COOR": 287519.38982,
         "prices": {
             "B027": 1659,
             "B034": 1889,
             "D047": 1519
         },
-        "uni_id": "A0020494"
+        "UNI_ID": "A0020494"
     },
     {
-        "name": "진영주유소",
-        "address": "광주 광산구 송도로 292 (송정동)",
-        "category": "SKE",
+        "OS_NM": "진영주유소",
+        "NEW_ADR": "광주 광산구 송도로 292 (송정동)",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 290902.5088,
+        "GIS_Y_COOR": 282901.6168,
         "prices": {
             "B027": 1659,
             "D047": 1529
         },
-        "uni_id": "A0020262"
+        "UNI_ID": "A0020262"
     },
     {
-        "name": "실크로드주유소",
-        "address": "광주 광산구 사암로 866",
-        "category": "SKE",
+        "OS_NM": "실크로드주유소",
+        "NEW_ADR": "광주 광산구 사암로 866",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 293201.0,
+        "GIS_Y_COOR": 291525.0,
         "prices": {
             "B027": 1665,
             "D047": 1524
         },
-        "uni_id": "A0020594"
+        "UNI_ID": "A0020594"
     },
     {
-        "name": "이칠주유소",
-        "address": "광주 광산구 상무대로 378",
-        "category": "SKE",
+        "OS_NM": "이칠주유소",
+        "NEW_ADR": "광주 광산구 상무대로 378",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 291494.0,
+        "GIS_Y_COOR": 283421.0,
         "prices": {
             "B027": 1669,
             "D047": 1539,
             "C004": 1500
         },
-        "uni_id": "A0020592"
+        "UNI_ID": "A0020592"
     },
     {
-        "name": "㈜마이웨이8번가",
-        "address": "광주 광산구 사암로 754",
-        "category": "HDO",
+        "OS_NM": "㈜마이웨이8번가",
+        "NEW_ADR": "광주 광산구 사암로 754",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 292476.3218,
+        "GIS_Y_COOR": 290719.8192,
         "prices": {
             "B027": 1675,
             "D047": 1524,
             "B034": 1917
         },
-        "uni_id": "A0020541"
+        "UNI_ID": "A0020541"
     },
     {
-        "name": "광장주유소(s)",
-        "address": "광주 광산구 북문대로 907 (비아동)",
-        "category": "SOL",
+        "OS_NM": "광장주유소(s)",
+        "NEW_ADR": "광주 광산구 북문대로 907 (비아동)",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 293236.0,
+        "GIS_Y_COOR": 293128.0,
         "prices": {
             "B027": 1678,
             "D047": 1548
         },
-        "uni_id": "A0020259"
+        "UNI_ID": "A0020259"
     },
     {
-        "name": "전송주유소",
-        "address": "광주 광산구 어등대로 583",
-        "category": "SKE",
+        "OS_NM": "전송주유소",
+        "NEW_ADR": "광주 광산구 어등대로 583",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 289656.71719,
+        "GIS_Y_COOR": 284247.91966,
         "prices": {
             "B027": 1679,
             "D047": 1519,
             "C004": 1500
         },
-        "uni_id": "A0020477"
+        "UNI_ID": "A0020477"
     },
     {
-        "name": "송촌주유소",
-        "address": "광주 광산구 동곡로 656",
-        "category": "ETC",
+        "OS_NM": "송촌주유소",
+        "NEW_ADR": "광주 광산구 동곡로 656",
+        "POLL_DIV_CD": "ETC",
+        "GIS_X_COOR": 288717.0,
+        "GIS_Y_COOR": 283045.0,
         "prices": {
             "D047": 1539,
             "B027": 1699
         },
-        "uni_id": "A0020427"
+        "UNI_ID": "A0020427"
     },
     {
-        "name": "슈퍼크린주유소(s)",
-        "address": "광주 광산구 상무대로 372 (신촌동)",
-        "category": "SOL",
+        "OS_NM": "슈퍼크린주유소(s)",
+        "NEW_ADR": "광주 광산구 상무대로 372 (신촌동)",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 291424.9,
+        "GIS_Y_COOR": 283421.3,
         "prices": {
             "B027": 1699,
             "D047": 1599
         },
-        "uni_id": "A0020316"
+        "UNI_ID": "A0020316"
     },
     {
-        "name": "하남현대주유소(H)",
-        "address": "광주 광산구 임곡로 573 (안청동)",
-        "category": "HDO",
+        "OS_NM": "하남현대주유소(H)",
+        "NEW_ADR": "광주 광산구 임곡로 573 (안청동)",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 290581.0,
+        "GIS_Y_COOR": 291173.0,
         "prices": {
             "B027": 1738,
             "D047": 1628
         },
-        "uni_id": "A0020130"
+        "UNI_ID": "A0020130"
     },
     {
-        "name": "서강주유소",
-        "address": "광주 광산구 목련로 250",
-        "category": "SKE",
+        "OS_NM": "서강주유소",
+        "NEW_ADR": "광주 광산구 목련로 250",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 293154.0,
+        "GIS_Y_COOR": 286673.0,
         "prices": {
             "C004": 1600,
             "B027": 1739,
             "D047": 1629
         },
-        "uni_id": "A0020682"
+        "UNI_ID": "A0020682"
     },
     {
-        "name": "삼거리주유소",
-        "address": "광주 남구 서문대로 781",
-        "category": "HDO",
+        "OS_NM": "삼거리주유소",
+        "NEW_ADR": "광주 남구 서문대로 781",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 299712.0,
+        "GIS_Y_COOR": 281715.0,
         "prices": {
             "B027": 1619,
             "B034": 1859,
             "D047": 1489
         },
-        "uni_id": "A0019660"
+        "UNI_ID": "A0019660"
     },
     {
-        "name": "행복가득효천주유소",
-        "address": "광주 남구 서문대로 37 (이장동)",
-        "category": "SKE",
+        "OS_NM": "행복가득효천주유소",
+        "NEW_ADR": "광주 남구 서문대로 37 (이장동)",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 296052.62696,
+        "GIS_Y_COOR": 276307.71571,
         "prices": {
             "B027": 1625,
             "D047": 1485
         },
-        "uni_id": "A0033492"
+        "UNI_ID": "A0033492"
     },
     {
-        "name": "대동주유소 ㈜유신산업",
-        "address": "광주 남구 대남대로 153",
-        "category": "HDO",
+        "OS_NM": "대동주유소 ㈜유신산업",
+        "NEW_ADR": "광주 남구 대남대로 153",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 300678.8387,
+        "GIS_Y_COOR": 282172.9587,
         "prices": {
             "B027": 1635,
             "D047": 1515
         },
-        "uni_id": "A0020488"
+        "UNI_ID": "A0020488"
     },
     {
-        "name": "새론주유소",
-        "address": "광주 남구 대남대로 347",
-        "category": "SOL",
+        "OS_NM": "새론주유소",
+        "NEW_ADR": "광주 남구 대남대로 347",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 299275.0,
+        "GIS_Y_COOR": 283187.0,
         "prices": {
             "B027": 1645,
             "D047": 1525
         },
-        "uni_id": "A0019571"
+        "UNI_ID": "A0019571"
     },
     {
-        "name": "화력주유소",
-        "address": "광주 남구 회재로 338",
-        "category": "GSC",
+        "OS_NM": "화력주유소",
+        "NEW_ADR": "광주 남구 회재로 338",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 293197.0,
+        "GIS_Y_COOR": 277784.0,
         "prices": {
             "C004": 1400,
             "B027": 1669,
             "D047": 1539
         },
-        "uni_id": "A0019632"
+        "UNI_ID": "A0019632"
     },
     {
-        "name": "대촌주유소",
-        "address": "광주 남구 고싸움로 169",
-        "category": "SOL",
+        "OS_NM": "대촌주유소",
+        "NEW_ADR": "광주 남구 고싸움로 169",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 293641.6869,
+        "GIS_Y_COOR": 276515.76989,
         "prices": {
             "B027": 1669,
             "D047": 1539
         },
-        "uni_id": "A0019593"
+        "UNI_ID": "A0019593"
     },
     {
-        "name": "대촌(상)주유소",
-        "address": "광주 남구 회재로 206 (지석동)",
-        "category": "SOL",
+        "OS_NM": "대촌(상)주유소",
+        "NEW_ADR": "광주 남구 회재로 206 (지석동)",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 293615.00252,
+        "GIS_Y_COOR": 276520.99564,
         "prices": {
             "C004": 1400,
             "B027": 1669,
             "D047": 1539
         },
-        "uni_id": "A0019518"
+        "UNI_ID": "A0019518"
     },
     {
-        "name": "대남로주유소",
-        "address": "광주 남구  대남대로 399",
-        "category": "SKE",
+        "OS_NM": "대남로주유소",
+        "NEW_ADR": "광주 남구  대남대로 399",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 298996.0,
+        "GIS_Y_COOR": 283625.0,
         "prices": {
             "B027": 1665,
             "D047": 1525
         },
-        "uni_id": "A0019683"
+        "UNI_ID": "A0019683"
     },
     {
-        "name": "양촌주유소",
-        "address": "광주 남구 포충로 121 (양촌동)",
-        "category": "SKE",
+        "OS_NM": "양촌주유소",
+        "NEW_ADR": "광주 남구 포충로 121 (양촌동)",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 289903.7175,
+        "GIS_Y_COOR": 274223.0538,
         "prices": {
             "C004": 1400,
             "B027": 1759,
             "D047": 1569
         },
-        "uni_id": "A0020270"
+        "UNI_ID": "A0020270"
     },
     {
-        "name": "솔바우주유소",
-        "address": "광주 동구 남계길 4 (내남동)",
-        "category": "SOL",
+        "OS_NM": "솔바우주유소",
+        "NEW_ADR": "광주 동구 남계길 4 (내남동)",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 303540.0,
+        "GIS_Y_COOR": 278039.0,
         "prices": {
             "B027": 1729,
             "D047": 1559
         },
-        "uni_id": "A0020119"
+        "UNI_ID": "A0020119"
     },
     {
-        "name": "무지개주유소 경훈에너지",
-        "address": "광주 북구 서하로 237 (오치동)",
-        "category": "RTO",
+        "OS_NM": "무지개주유소 경훈에너지",
+        "NEW_ADR": "광주 북구 서하로 237 (오치동)",
+        "POLL_DIV_CD": "RTO",
+        "GIS_X_COOR": 300619.00254,
+        "GIS_Y_COOR": 288147.99563,
         "prices": {
             "C004": 1320,
             "B027": 1619,
             "D047": 1489
         },
-        "uni_id": "A0019350"
+        "UNI_ID": "A0019350"
     },
     {
-        "name": "(주)일곡우리주유소",
-        "address": "광주 북구 우치로 595 (일곡동)",
-        "category": "HDO",
+        "OS_NM": "(주)일곡우리주유소",
+        "NEW_ADR": "광주 북구 우치로 595 (일곡동)",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 300304.0,
+        "GIS_Y_COOR": 291496.0,
         "prices": {
             "B027": 1639,
             "D047": 1509
         },
-        "uni_id": "A0019869"
+        "UNI_ID": "A0019869"
     },
     {
-        "name": "차나라주유소",
-        "address": "광주 북구 동문대로 138",
-        "category": "HDO",
+        "OS_NM": "차나라주유소",
+        "NEW_ADR": "광주 북구 동문대로 138",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 302479.57729,
+        "GIS_Y_COOR": 286765.71997,
         "prices": {
             "B034": 1935,
             "D047": 1485,
             "B027": 1625
         },
-        "uni_id": "A0020072"
+        "UNI_ID": "A0020072"
     },
     {
-        "name": "용전IC주유소",
-        "address": "광주 북구 우치로 842 (용전동)",
-        "category": "GSC",
+        "OS_NM": "용전IC주유소",
+        "NEW_ADR": "광주 북구 우치로 842 (용전동)",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 299497.42778,
+        "GIS_Y_COOR": 293756.49702,
         "prices": {
             "D047": 1495,
             "B027": 1625
         },
-        "uni_id": "A0019705"
+        "UNI_ID": "A0019705"
     },
     {
-        "name": "남선석유㈜ 서방셀프주유소",
-        "address": "광주 북구 서암대로 323 (우산동)",
-        "category": "SOL",
+        "OS_NM": "남선석유㈜ 서방셀프주유소",
+        "NEW_ADR": "광주 북구 서암대로 323 (우산동)",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 301718.5445,
+        "GIS_Y_COOR": 285672.59217,
         "prices": {
             "B027": 1623,
             "D047": 1483
         },
-        "uni_id": "A0033126"
+        "UNI_ID": "A0033126"
     },
     {
-        "name": "(주)엠앤지 첨단북광주IC주유소",
-        "address": "광주광역시 북구 삼소로 318",
-        "category": "SKE",
+        "OS_NM": "(주)엠앤지 첨단북광주IC주유소",
+        "NEW_ADR": "광주광역시 북구 삼소로 318",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 297228.8,
+        "GIS_Y_COOR": 294070.7,
         "prices": {
             "B027": 1619,
             "D047": 1489,
             "B034": 1865
         },
-        "uni_id": "A0020134"
+        "UNI_ID": "A0020134"
     },
     {
-        "name": "빛고을로셀프주유소",
-        "address": "광주 북구 빛고을대로 657 (용두동)",
-        "category": "HDO",
+        "OS_NM": "빛고을로셀프주유소",
+        "NEW_ADR": "광주 북구 빛고을대로 657 (용두동)",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 297188.99513,
+        "GIS_Y_COOR": 291864.30919,
         "prices": {
             "B027": 1639,
             "D047": 1515
         },
-        "uni_id": "A0020073"
+        "UNI_ID": "A0020073"
     },
     {
-        "name": "서림주유소",
-        "address": "광주 북구 무등로 126 (신안동)",
-        "category": "GSC",
+        "OS_NM": "서림주유소",
+        "NEW_ADR": "광주 북구 무등로 126 (신안동)",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 299779.1,
+        "GIS_Y_COOR": 285903.4,
         "prices": {
             "B027": 1645,
             "D047": 1525,
             "C004": 1500
         },
-        "uni_id": "A0019953"
+        "UNI_ID": "A0019953"
     },
     {
-        "name": "용전주유소",
-        "address": "광주 북구 우치로 809",
-        "category": "SOL",
+        "OS_NM": "용전주유소",
+        "NEW_ADR": "광주 북구 우치로 809",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 299523.82945,
+        "GIS_Y_COOR": 293427.88126,
         "prices": {
             "B027": 1648,
             "D047": 1518
         },
-        "uni_id": "A0019843"
+        "UNI_ID": "A0019843"
     },
     {
-        "name": "SK에너지㈜ 보람주유소",
-        "address": "광주 북구 용봉로 24 (신안동)",
-        "category": "SKE",
+        "OS_NM": "SK에너지㈜ 보람주유소",
+        "NEW_ADR": "광주 북구 용봉로 24 (신안동)",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 299950.0,
+        "GIS_Y_COOR": 286381.0,
         "prices": {
             "B027": 1649,
             "D047": 1489
         },
-        "uni_id": "A0020071"
+        "UNI_ID": "A0020071"
     },
     {
-        "name": "(주)케이피유통(본촌주유소)",
-        "address": "광주 북구 하서로 530 (본촌동)",
-        "category": "GSC",
+        "OS_NM": "(주)케이피유통(본촌주유소)",
+        "NEW_ADR": "광주 북구 하서로 530 (본촌동)",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 298278.1,
+        "GIS_Y_COOR": 291949.7,
         "prices": {
             "B027": 1649,
             "D047": 1509
         },
-        "uni_id": "A0020010"
+        "UNI_ID": "A0020010"
     },
     {
-        "name": "매곡주유소",
-        "address": "광주 북구 서하로 86 (매곡동)",
-        "category": "HDO",
+        "OS_NM": "매곡주유소",
+        "NEW_ADR": "광주 북구 서하로 86 (매곡동)",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 299122.5576,
+        "GIS_Y_COOR": 288147.0675,
         "prices": {
             "B027": 1655,
             "D047": 1525
         },
-        "uni_id": "A0019731"
+        "UNI_ID": "A0019731"
     },
     {
-        "name": "㈜마니에셋 독도사랑주유소11",
-        "address": "광주 북구 경열로 257(신안동)",
-        "category": "ETC",
+        "OS_NM": "㈜마니에셋 독도사랑주유소11",
+        "NEW_ADR": "광주 북구 경열로 257(신안동)",
+        "POLL_DIV_CD": "ETC",
+        "GIS_X_COOR": 300677.0,
+        "GIS_Y_COOR": 285379.0,
         "prices": {
             "B027": 1655,
             "D047": 1510
         },
-        "uni_id": "A0019944"
+        "UNI_ID": "A0019944"
     },
     {
-        "name": "패밀리셀프주유소",
-        "address": "광주 북구 우치로 670",
-        "category": "SKE",
+        "OS_NM": "패밀리셀프주유소",
+        "NEW_ADR": "광주 북구 우치로 670",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 300275.12367,
+        "GIS_Y_COOR": 292237.97977,
         "prices": {
             "B027": 1658,
             "D047": 1528
         },
-        "uni_id": "A0020088"
+        "UNI_ID": "A0020088"
     },
     {
-        "name": "도동재주유소",
-        "address": "광주 북구 동문대로 410",
-        "category": "SOL",
+        "OS_NM": "도동재주유소",
+        "NEW_ADR": "광주 북구 동문대로 410",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 303242.7004,
+        "GIS_Y_COOR": 289322.92258,
         "prices": {
             "B027": 1668,
             "D047": 1548
         },
-        "uni_id": "A0019946"
+        "UNI_ID": "A0019946"
     },
     {
-        "name": "코끼리주유소",
-        "address": "광주 북구 서하로 77",
-        "category": "SKE",
+        "OS_NM": "코끼리주유소",
+        "NEW_ADR": "광주 북구 서하로 77",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 299014.3649,
+        "GIS_Y_COOR": 288200.6629,
         "prices": {
             "D047": 1528,
             "B027": 1668
         },
-        "uni_id": "A0019786"
+        "UNI_ID": "A0019786"
     },
     {
-        "name": "지산주유소",
-        "address": "광주 북구 양산택지로 157",
-        "category": "SOL",
+        "OS_NM": "지산주유소",
+        "NEW_ADR": "광주 북구 양산택지로 157",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 298056.54048,
+        "GIS_Y_COOR": 291503.81064,
         "prices": {
             "B027": 1669,
             "D047": 1519
         },
-        "uni_id": "A0019476"
+        "UNI_ID": "A0019476"
     },
     {
-        "name": "세본주유소",
-        "address": "광주 북구 용주로 21",
-        "category": "SKE",
+        "OS_NM": "세본주유소",
+        "NEW_ADR": "광주 북구 용주로 21",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 300043.83772,
+        "GIS_Y_COOR": 287512.72671,
         "prices": {
             "C004": 1500,
             "B027": 1689,
             "D047": 1559
         },
-        "uni_id": "A0019950"
+        "UNI_ID": "A0019950"
     },
     {
-        "name": "두암주유소",
-        "address": "광주 북구 군왕로 103 (두암동)",
-        "category": "SOL",
+        "OS_NM": "두암주유소",
+        "NEW_ADR": "광주 북구 군왕로 103 (두암동)",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 302952.22918,
+        "GIS_Y_COOR": 286259.14829,
         "prices": {
             "B027": 1699,
             "D047": 1589
         },
-        "uni_id": "A0019945"
+        "UNI_ID": "A0019945"
     },
     {
-        "name": "SK에너지㈜ 고려셀프주유소",
-        "address": "광주 북구 설죽로 398 (삼각동)",
-        "category": "SKE",
+        "OS_NM": "SK에너지㈜ 고려셀프주유소",
+        "NEW_ADR": "광주 북구 설죽로 398 (삼각동)",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 300040.0,
+        "GIS_Y_COOR": 288975.8,
         "prices": {
             "B034": 1840,
             "C004": 1500,
             "B027": 1717,
             "D047": 1599
         },
-        "uni_id": "A0019467"
+        "UNI_ID": "A0019467"
     },
     {
-        "name": "일곡주유소",
-        "address": "광주 북구 우치로422번길 22 (삼각동)",
-        "category": "SOL",
+        "OS_NM": "일곡주유소",
+        "NEW_ADR": "광주 북구 우치로422번길 22 (삼각동)",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 300259.1388,
+        "GIS_Y_COOR": 290038.973,
         "prices": {
             "B027": 1729,
             "D047": 1599
         },
-        "uni_id": "A0019998"
+        "UNI_ID": "A0019998"
     },
     {
-        "name": "벽진주유소",
-        "address": "광주 서구 상무대로 616",
-        "category": "RTO",
+        "OS_NM": "벽진주유소",
+        "NEW_ADR": "광주 서구 상무대로 616",
+        "POLL_DIV_CD": "RTO",
+        "GIS_X_COOR": 293807.05542,
+        "GIS_Y_COOR": 282947.07626,
         "prices": {
             "D047": 1482,
             "B027": 1622
         },
-        "uni_id": "A0019990"
+        "UNI_ID": "A0019990"
     },
     {
-        "name": "운천주유소",
-        "address": "광주 서구 상무대로 758",
-        "category": "HDO",
+        "OS_NM": "운천주유소",
+        "NEW_ADR": "광주 서구 상무대로 758",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 295079.0,
+        "GIS_Y_COOR": 283541.0,
         "prices": {
             "B027": 1638,
             "D047": 1498
         },
-        "uni_id": "A0020680"
+        "UNI_ID": "A0020680"
     },
     {
-        "name": "대광주유소",
-        "address": "광주 서구 하남대로 556 (동천동)",
-        "category": "GSC",
+        "OS_NM": "대광주유소",
+        "NEW_ADR": "광주 서구 하남대로 556 (동천동)",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 295748.2304,
+        "GIS_Y_COOR": 286672.1502,
         "prices": {
             "C004": 1600,
             "B027": 1639,
             "D047": 1519
         },
-        "uni_id": "A0019726"
+        "UNI_ID": "A0019726"
     },
     {
-        "name": "시민주유소",
-        "address": "광주 서구 눌재로 328",
-        "category": "GSC",
+        "OS_NM": "시민주유소",
+        "NEW_ADR": "광주 서구 눌재로 328",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 293078.0,
+        "GIS_Y_COOR": 279735.0,
         "prices": {
             "C004": 1500,
             "B027": 1668,
             "D047": 1548
         },
-        "uni_id": "A0020175"
+        "UNI_ID": "A0020175"
     },
     {
-        "name": "(주)일프로주유소",
-        "address": "광주 서구 운천로 206 (치평동)",
-        "category": "HDO",
+        "OS_NM": "(주)일프로주유소",
+        "NEW_ADR": "광주 서구 운천로 206 (치평동)",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 295962.6148,
+        "GIS_Y_COOR": 284185.8002,
         "prices": {
             "B027": 1675,
             "B034": 1937,
             "D047": 1564
         },
-        "uni_id": "A0020561"
+        "UNI_ID": "A0020561"
     },
     {
-        "name": "풍암대림주유소",
-        "address": "광주 서구 풍서좌로 83 (매월동)",
-        "category": "SOL",
+        "OS_NM": "풍암대림주유소",
+        "NEW_ADR": "광주 서구 풍서좌로 83 (매월동)",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 296171.7,
+        "GIS_Y_COOR": 280837.0,
         "prices": {
             "B027": 1675,
             "D047": 1564
         },
-        "uni_id": "A0020215"
+        "UNI_ID": "A0020215"
     },
     {
-        "name": "매월유통단지주유소",
-        "address": "광주 서구 회재로 746 (매월동)",
-        "category": "HDO",
+        "OS_NM": "매월유통단지주유소",
+        "NEW_ADR": "광주 서구 회재로 746 (매월동)",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 295402.0,
+        "GIS_Y_COOR": 280084.0,
         "prices": {
             "B027": 1679,
             "C004": 1500,
             "D047": 1567
         },
-        "uni_id": "A0020227"
+        "UNI_ID": "A0020227"
     },
     {
-        "name": "대동에너지주유소",
-        "address": "광주 서구 회재로 783",
-        "category": "HDO",
+        "OS_NM": "대동에너지주유소",
+        "NEW_ADR": "광주 서구 회재로 783",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 295655.51578,
+        "GIS_Y_COOR": 280316.26886,
         "prices": {
             "B027": 1679,
             "D047": 1569
         },
-        "uni_id": "A0020700"
+        "UNI_ID": "A0020700"
     },
     {
-        "name": "가람주유소",
-        "address": "광주 서구 상무대로1206번길 3 (농성동)",
-        "category": "SOL",
+        "OS_NM": "가람주유소",
+        "NEW_ADR": "광주 서구 상무대로1206번길 3 (농성동)",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 299365.76714,
+        "GIS_Y_COOR": 284609.19692,
         "prices": {
             "B027": 1695,
             "D047": 1545
         },
-        "uni_id": "A0019802"
+        "UNI_ID": "A0019802"
     },
     {
-        "name": "상록주유소",
-        "address": "광주 서구 상무대로 1180",
-        "category": "HDO",
+        "OS_NM": "상록주유소",
+        "NEW_ADR": "광주 서구 상무대로 1180",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 299120.91417,
+        "GIS_Y_COOR": 284508.63234,
         "prices": {
             "B034": 1925,
             "B027": 1695,
             "D047": 1565
         },
-        "uni_id": "A0020216"
+        "UNI_ID": "A0020216"
     },
     {
-        "name": "컨벤션주유소",
-        "address": "광주 서구 상무대로 714",
-        "category": "SOL",
+        "OS_NM": "컨벤션주유소",
+        "NEW_ADR": "광주 서구 상무대로 714",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 294709.20219,
+        "GIS_Y_COOR": 283328.24093,
         "prices": {
             "B027": 1728,
             "D047": 1598
         },
-        "uni_id": "A0019758"
+        "UNI_ID": "A0019758"
     },
     {
-        "name": "청정이엔지 (주)주유소",
-        "address": "광주 서구 상무자유로 18",
-        "category": "GSC",
+        "OS_NM": "청정이엔지 (주)주유소",
+        "NEW_ADR": "광주 서구 상무자유로 18",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 294143.40685,
+        "GIS_Y_COOR": 284214.4383,
         "prices": {
             "D047": 1598,
             "B027": 1728,
             "B034": 1998
         },
-        "uni_id": "A0020465"
+        "UNI_ID": "A0020465"
     },
     {
-        "name": "부경LPG충전소",
-        "address": "광주 광산구 동곡로 542 (장록동)",
-        "category": "SKE",
+        "OS_NM": "부경LPG충전소",
+        "NEW_ADR": "광주 광산구 동곡로 542 (장록동)",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 288688.7,
+        "GIS_Y_COOR": 281912.9,
         "prices": {
             "K015": 1034
         },
-        "uni_id": "A0020294"
+        "UNI_ID": "A0020294"
     },
     {
-        "name": "SK행복충전 제일에너지충전소 동곡점",
-        "address": "광주 광산구 동곡로 123",
-        "category": "SKG",
+        "OS_NM": "SK행복충전 제일에너지충전소 동곡점",
+        "NEW_ADR": "광주 광산구 동곡로 123",
+        "POLL_DIV_CD": "SKG",
+        "GIS_X_COOR": 288279.0,
+        "GIS_Y_COOR": 278028.0,
         "prices": {
             "K015": 1044
         },
-        "uni_id": "A0020669"
+        "UNI_ID": "A0020669"
     },
     {
-        "name": "동일가스㈜",
-        "address": "광주 광산구 동곡로 456",
-        "category": "GSC",
+        "OS_NM": "동일가스㈜",
+        "NEW_ADR": "광주 광산구 동곡로 456",
+        "POLL_DIV_CD": "GSC",
+        "GIS_X_COOR": 288920.79186,
+        "GIS_Y_COOR": 281173.87332,
         "prices": {
             "K015": 1044
         },
-        "uni_id": "A0032897"
+        "UNI_ID": "A0032897"
     },
     {
-        "name": "수완LPG충전소",
-        "address": "광주 광산구 사암로 668 (장덕동)",
-        "category": "HDO",
+        "OS_NM": "수완LPG충전소",
+        "NEW_ADR": "광주 광산구 사암로 668 (장덕동)",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 292024.59542,
+        "GIS_Y_COOR": 290014.44901,
         "prices": {
             "K015": 1044
         },
-        "uni_id": "A0020436"
+        "UNI_ID": "A0020436"
     },
     {
-        "name": "신공항LPG충전소",
-        "address": "광주 광산구 상무대로 404",
-        "category": "E1G",
+        "OS_NM": "신공항LPG충전소",
+        "NEW_ADR": "광주 광산구 상무대로 404",
+        "POLL_DIV_CD": "E1G",
+        "GIS_X_COOR": 291781.0,
+        "GIS_Y_COOR": 283414.0,
         "prices": {
             "K015": 1044
         },
-        "uni_id": "A0020275"
+        "UNI_ID": "A0020275"
     },
     {
-        "name": "대성가스(주)지평선충전소",
-        "address": "광주광역시 광산구 영광로3777",
-        "category": "E1G",
+        "OS_NM": "대성가스(주)지평선충전소",
+        "NEW_ADR": "광주광역시 광산구 영광로3777",
+        "POLL_DIV_CD": "E1G",
+        "GIS_X_COOR": 283480.1,
+        "GIS_Y_COOR": 285202.6,
         "prices": {
             "K015": 1060
         },
-        "uni_id": "A0020568"
+        "UNI_ID": "A0020568"
     },
     {
-        "name": "SK행복충전 한일엘피지충전소",
-        "address": "광주 광산구 북문대로420번길 92",
-        "category": "SKG",
+        "OS_NM": "SK행복충전 한일엘피지충전소",
+        "NEW_ADR": "광주 광산구 북문대로420번길 92",
+        "POLL_DIV_CD": "SKG",
+        "GIS_X_COOR": 295677.0,
+        "GIS_Y_COOR": 288799.0,
         "prices": {
             "K015": 1068
         },
-        "uni_id": "A0020171"
+        "UNI_ID": "A0020171"
     },
     {
-        "name": "SK행복충전 동부충전소",
-        "address": "광주 동구 남문로 615 (용산동)",
-        "category": "SKG",
+        "OS_NM": "SK행복충전 동부충전소",
+        "NEW_ADR": "광주 동구 남문로 615 (용산동)",
+        "POLL_DIV_CD": "SKG",
+        "GIS_X_COOR": 302761.0,
+        "GIS_Y_COOR": 281296.0,
         "prices": {
             "K015": 1044
         },
-        "uni_id": "A0006965"
+        "UNI_ID": "A0006965"
     },
     {
-        "name": "디오충전소",
-        "address": "광주 북구 빛고을대로 656 (용두동)",
-        "category": "HDO",
+        "OS_NM": "디오충전소",
+        "NEW_ADR": "광주 북구 빛고을대로 656 (용두동)",
+        "POLL_DIV_CD": "HDO",
+        "GIS_X_COOR": 297268.82505,
+        "GIS_Y_COOR": 291868.52715,
         "prices": {
             "K015": 1041
         },
-        "uni_id": "A0033019"
+        "UNI_ID": "A0033019"
     },
     {
-        "name": "매일엘피지",
-        "address": "광주 북구 우치로 850",
-        "category": "SKE",
+        "OS_NM": "매일엘피지",
+        "NEW_ADR": "광주 북구 우치로 850",
+        "POLL_DIV_CD": "SKE",
+        "GIS_X_COOR": 299446.0,
+        "GIS_Y_COOR": 293792.0,
         "prices": {
             "K015": 1042
         },
-        "uni_id": "A0019935"
+        "UNI_ID": "A0019935"
     },
     {
-        "name": "미래LPG충전소",
-        "address": "광주 북구 임방울대로 983 (신용동)",
-        "category": "SKG",
+        "OS_NM": "미래LPG충전소",
+        "NEW_ADR": "광주 북구 임방울대로 983 (신용동)",
+        "POLL_DIV_CD": "SKG",
+        "GIS_X_COOR": 296907.0,
+        "GIS_Y_COOR": 291232.0,
         "prices": {
             "K015": 1044
         },
-        "uni_id": "A0019905"
+        "UNI_ID": "A0019905"
     },
     {
-        "name": "SK행복충전 동광주LPG충전소",
-        "address": "광주 북구 동문대로 560 (망월동)",
-        "category": "SKG",
+        "OS_NM": "SK행복충전 동광주LPG충전소",
+        "NEW_ADR": "광주 북구 동문대로 560 (망월동)",
+        "POLL_DIV_CD": "SKG",
+        "GIS_X_COOR": 303989.8,
+        "GIS_Y_COOR": 290449.3,
         "prices": {
             "K015": 1044
         },
-        "uni_id": "A0022496"
+        "UNI_ID": "A0022496"
     },
     {
-        "name": "패밀리LPG충전소",
-        "address": "광주 북구 우치로 654",
-        "category": "SOL",
+        "OS_NM": "패밀리LPG충전소",
+        "NEW_ADR": "광주 북구 우치로 654",
+        "POLL_DIV_CD": "SOL",
+        "GIS_X_COOR": 300301.70972,
+        "GIS_Y_COOR": 292152.80757,
         "prices": {
             "K015": 1044
         },
-        "uni_id": "A0019947"
+        "UNI_ID": "A0019947"
     }
 ]

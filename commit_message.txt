@@ -1,1 +1,1 @@
-Fix: Correct data mapping in javascript
+Fix: Revert index.html to use gjssoil_data.json directly
