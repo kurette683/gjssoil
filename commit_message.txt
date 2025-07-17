@@ -1,1 +1,1 @@
-Feature: Generate gjssoil_data.json and gjssoil_data.csv with prices from detailById API
+Fix: Load data from json file

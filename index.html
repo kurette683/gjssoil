@@ -140,90 +140,43 @@
         };
 
         // --- API FETCHING FUNCTIONS ---
-        async function fetchSangsaengStores() {
-            const csvUrl = "./gjssoil_stores.csv"; // GitHub Pages에서 접근 가능한 경로
+        async function getCombinedData(location) {
+            const jsonUrl = "./gjssoil_data.json";
             try {
-                const response = await fetch(csvUrl);
-                if (!response.ok) throw new Error(`CSV 파일 로드 오류: ${response.status}`);
-                const csvText = await response.text();
+                const response = await fetch(jsonUrl);
+                if (!response.ok) throw new Error(`JSON 파일 로드 오류: ${response.status}`);
+                const stores = await response.json();
 
-                // CSV 파싱 (간단한 예시, 실제 CSV 구조에 따라 조정 필요)
-                const lines = csvText.trim().split('\n');
-                const headers = lines[0].split(',');
-                const stores = [];
+                if (!Array.isArray(stores)) throw new Error("JSON 데이터 형식이 올바르지 않습니다.");
 
-                for (let i = 1; i < lines.length; i++) {
-                    const values = lines[i].split(',');
-                    const store = {};
-                    for (let j = 0; j < headers.length; j++) {
-                        store[headers[j].trim()] = values[j].trim();
-                    }
-                    // 필요한 데이터만 추출
-                    stores.push({
-                        name: store['업체명'],
-                        address: store['업체주소'],
-                        category: store['업종명'] // 업종명도 필요할 수 있으므로 추가
-                    });
-                }
-                return stores;
+                // 데이터에 거리 정보 추가
+                const storesWithDistance = stores.map(store => {
+                    const lat = parseFloat(store.GIS_Y_COOR);
+                    const lng = parseFloat(store.GIS_X_COOR);
+                    const distance = location ? calculateDistance(location.lat, location.lng, lat, lng) : null;
+                    
+                    // 가격 정보를 prices 객체로 변환
+                    const prices = {};
+                    if (store.PRICE_B027) prices['B027'] = store.PRICE_B027;
+                    if (store.PRICE_D047) prices['D047'] = store.PRICE_D047;
+                    if (store.PRICE_K015) prices['K015'] = store.PRICE_K015;
+
+                    return {
+                        name: store.OS_NM,
+                        address: store.NEW_ADR,
+                        lat: lat,
+                        lng: lng,
+                        prices: prices,
+                        distance: distance
+                    };
+                });
+
+                return storesWithDistance;
             } catch (error) {
-                console.error("CSV 데이터 로드 실패:", error);
-                showStatusMessage("주유소 정보를 불러오는 데 실패했습니다.");
+                console.error("주유소 데이터 로드 실패:", error);
+                showStatusMessage("주유소 정보를 불러오는 데 실패했습니다. 파일을 확인해주세요.");
                 return [];
             }
-        }
-        
-        async function fetchPrice(storeName) {
-            const url = `https://www.opinet.co.kr/api/searchByName.do?code=${OPINET_API_KEY}&out=json&osnm=${encodeURIComponent(storeName)}`;
-             try {
-                // Opinet API can be tricky with CORS. If it fails, a server-side proxy would be needed.
-                // For this client-side example, we proceed assuming it works.
-                const response = await fetch(url);
-                if (!response.ok) return {}; // Silently fail for individual price checks
-                const data = await response.json();
-                
-                if (data.RESULT.OIL_PRICE.length > 0) {
-                    const prices = data.RESULT.OIL_PRICE.reduce((acc, oil) => {
-                        acc[oil.PRODCD] = oil.PRICE;
-                        return acc;
-                    }, {});
-                    return prices;
-                }
-                return {};
-            } catch (error) {
-                // This error often relates to CORS, which can't be caught here.
-                console.error(`가격정보 조회 실패 (${storeName}):`, error);
-                return {};
-            }
-        }
-        
-        // --- DATA PROCESSING & INTEGRATION ---
-        async function getCombinedData(location) {
-            const stores = await fetchSangsaengStores();
-            if (stores.length === 0) return [];
-
-            const geocoder = new kakao.maps.services.Geocoder();
-
-            const promises = stores.map(store => new Promise(async (resolve) => {
-                geocoder.addressSearch(store.address, async (result, status) => {
-                    if (status === kakao.maps.services.Status.OK) {
-                        const lat = parseFloat(result[0].y);
-                        const lng = parseFloat(result[0].x);
-                        // NOTE: Opinet API calls are rate-limited and slow. In a real app, this should be done on a backend.
-                        // We are simplifying here. A delay might be needed to avoid rate-limiting.
-                        await new Promise(r => setTimeout(r, 50)); // Small delay
-                        const prices = await fetchPrice(store.name);
-                        const distance = location ? calculateDistance(location.lat, location.lng, lat, lng) : null;
-                        
-                        resolve({ ...store, lat, lng, prices, distance });
-                    } else {
-                        resolve(null); // Resolve with null if geocoding fails
-                    }
-                });
-            }));
-
-            const combinedData = (await Promise.all(promises)).filter(Boolean); // Filter out nulls
-            return combinedData;
         }
 
 
