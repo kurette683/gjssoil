@@ -1,1 +1,1 @@
-Fix: Improve API call robustness and logging in generate_gjssoil_data.py
+Fix: Use explicit KATEC proj4 definition for coordinate transformation
