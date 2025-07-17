@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - main
+  schedule:
+    # Run at 8 AM KST (23:00 UTC previous day)
+    - cron: '0 23 * * *'
+    # Run at 1 PM KST (04:00 UTC)
+    - cron: '0 4 * * *'
+    # Run at 6 PM KST (09:00 UTC)
+    - cron: '0 9 * * *'
 
 jobs:
   build-and-deploy:
@@ -12,11 +19,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Python dependencies
+        run: |
+          pip install pandas requests pyproj
+
+      - name: Run matching_stn_info.py
+        run: python gjssoil/matching_stn_info.py
+
+      - name: Run get_more_stn_info.py
+        run: python gjssoil/get_more_stn_info.py
+
+      - name: Run generate_gjssoil_data.py
+        run: python gjssoil/generate_gjssoil_data.py
+
       - name: Replace API keys
         run: |
           sed -i "s|appkey=YOUR_KAKAO_API_KEY|appkey=${{ secrets.KAKAO_API_KEY }}|g" index.html
           
-                  
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
