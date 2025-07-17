@@ -1,1 +1,1 @@
-Fix: Load data from json file
+Fix: Correct data mapping in javascript
