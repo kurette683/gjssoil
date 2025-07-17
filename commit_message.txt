@@ -1,1 +1,1 @@
-Fix: Revert index.html to use gjssoil_data.json directly
+Feat: Add relocate button and improve location handling
