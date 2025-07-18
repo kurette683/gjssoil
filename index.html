@@ -18,6 +18,15 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        #chart-container {
+            position: relative;
+            height: 500px; /* Fixed height for square aspect ratio */
+            width: 100%;
+        }
+        #cost-effectiveness-chart {
+            height: 100% !important;
+            width: 100% !important;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
@@ -44,7 +53,7 @@
                 </select>
             </div>
             <div class="flex gap-2">
-                <button id="toggle-view-btn" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">거리-가격 산점도</button>
+                <button id="toggle-view-btn" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition" disabled>거리-가격 산점도</button>
             </div>
         </div>
         <div id="status-message" class="text-center p-4 my-4 bg-yellow-100 text-yellow-800 rounded-md hidden"></div>
@@ -327,6 +336,8 @@
                     displayChart(fuelTypeSelect.value);
                 }
             }
+            // Enable toggle view button after location is obtained
+            toggleViewBtn.disabled = false;
         }
 
         function requestLocation() {
@@ -386,6 +397,3 @@
             }
             showLoader(false);
         };
-    </script>
-</body>
-</html>
