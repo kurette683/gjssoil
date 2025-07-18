@@ -53,7 +53,7 @@
                 </select>
             </div>
             <div class="flex gap-2">
-                <button id="toggle-view-btn" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition" disabled>거리-가격 산점도</button>
+                <button id="toggle-view-btn" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">거리-가격 산점도</button>
             </div>
         </div>
         <div id="status-message" class="text-center p-4 my-4 bg-yellow-100 text-yellow-800 rounded-md hidden"></div>
@@ -88,6 +88,9 @@
         let userLocation = null;
         let myChart = null; // Chart instance
         let currentView = 'list'; // 'list' or 'chart'
+
+        // Initially disable the toggle view button
+        toggleViewBtn.disabled = true;
 
         const showLoader = (show) => { loaderContainer.style.display = show ? 'flex' : 'none'; };
         const showStatusMessage = (message) => {
@@ -358,6 +361,8 @@
                 showStatusMessage("이 브라우저는 위치 정보를 지원하지 않습니다.");
                 updateDistancesAndRender(null);
             }
+            // Ensure the button is enabled after location attempt
+            toggleViewBtn.disabled = false;
         }
 
         function toggleView() {
