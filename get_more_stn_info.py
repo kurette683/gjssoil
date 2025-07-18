@@ -8,7 +8,7 @@ def get_more_station_info():
     """
     gjssoil_list.csv의 상호 목록을 바탕으로 오피넷 API에서 상세 정보를 조회하고 CSV로 저장합니다.
     """
-    input_list_path = "D:\Vault\gemini\gjssoil\gjssoil_list.csv"
+    input_list_path = "gjssoil_list.csv"
     output_filename = "gjssoil_info.csv"
     opinet_api_key = os.environ.get("OPINET_API_KEY") # Get API key from environment variable
     if not opinet_api_key:
