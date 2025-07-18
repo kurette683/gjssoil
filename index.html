@@ -27,36 +27,58 @@
             <p class="text-lg text-gray-600 mt-2">광주 상생카드 가맹 주유소 가격 정보</p>
         </header>
         <div class="flex justify-between items-center bg-white p-3 rounded-lg shadow-md mb-6">
-            <div class="flex gap-2 items-center">
+            <div class="flex gap-2 items-center" id="list-controls">
                 <select id="sort-by" class="p-2 border rounded-md text-sm">
                     <option value="distance">거리순</option>
                     <option value="B027">휘발유순</option>
                     <option value="D047">경유순</option>
                     <option value="K015">LPG순</option>
                 </select>
+                <button id="relocate-btn" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">현위치</button>
+            </div>
+            <div class="flex gap-2 items-center" id="chart-controls" style="display: none;">
+                <select id="fuel-type-select" class="p-2 border rounded-md text-sm">
+                    <option value="B027">휘발유</option>
+                    <option value="D047">경유</option>
+                    <option value="K015">LPG</option>
+                </select>
             </div>
             <div class="flex gap-2">
-                <button id="relocate-btn" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">현위치</button>
+                <button id="toggle-view-btn" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">거리-가격 산점도</button>
             </div>
         </div>
         <div id="status-message" class="text-center p-4 my-4 bg-yellow-100 text-yellow-800 rounded-md hidden"></div>
         <div id="loader-container" class="flex justify-center items-center h-64"><div class="loader"></div></div>
         <main>
+            <div id="chart-container" class="hidden">
+                <canvas id="cost-effectiveness-chart"></canvas>
+                <div id="selected-store-info" class="mt-4 space-y-4"></div>
+            </div>
             <div id="store-list" class="space-y-4"></div>
         </main>
         <footer class="text-center text-gray-500 text-sm mt-8 pb-4">
             <p>본 데이터는 공공데이터포털과 오피넷 API를 기반으로 제공하고 있으나, 누락된 정보가 있을 수 있으니 주의가 필요합니다.</p>
         </footer>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
     <script>
         const storeListEl = document.getElementById('store-list');
         const sortBySelect = document.getElementById('sort-by');
         const loaderContainer = document.getElementById('loader-container');
         const statusMessageEl = document.getElementById('status-message');
         const relocateBtn = document.getElementById('relocate-btn');
+        const toggleViewBtn = document.getElementById('toggle-view-btn');
+        const chartContainer = document.getElementById('chart-container');
+        const fuelTypeSelect = document.getElementById('fuel-type-select');
+        const selectedStoreInfoEl = document.getElementById('selected-store-info');
+        const listControls = document.getElementById('list-controls');
+        const chartControls = document.getElementById('chart-controls');
 
         let allStoresData = [];
         let userLocation = null;
+        let myChart = null; // Chart instance
+        let currentView = 'list'; // 'list' or 'chart'
 
         const showLoader = (show) => { loaderContainer.style.display = show ? 'flex' : 'none'; };
         const showStatusMessage = (message) => {
@@ -121,6 +143,154 @@
             });
         }
 
+        function displaySelectedStoreInfo(store) {
+            selectedStoreInfoEl.innerHTML = '';
+            if (!store) {
+                return;
+            }
+            const priceGasoline = store.prices['B027'] ? `${parseInt(store.prices['B027']).toLocaleString()}원` : '정보없음';
+            const priceDiesel = store.prices['D047'] ? `${parseInt(store.prices['D047']).toLocaleString()}원` : '정보없음';
+            const priceLPG = store.prices['K015'] ? `${parseInt(store.prices['K015']).toLocaleString()}원` : '정보없음';
+            const card = document.createElement('div');
+            card.className = 'bg-white p-4 rounded-lg shadow-sm border border-gray-200';
+            card.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">${store.OS_NM}</h3>
+                        <p class="text-sm text-gray-600">${store.NEW_ADR}</p>
+                    </div>
+                    ${store.distance !== null ? `<span class="text-lg font-semibold text-blue-600">${store.distance.toFixed(1)} km</span>` : ''}
+                </div>
+                <div class="mt-4 grid grid-cols-3 gap-2 text-center border-t pt-3">
+                    <div><p class="text-xs text-gray-500">휘발유</p><p class="font-semibold ${priceGasoline !== '정보없음' ? 'text-green-700' : 'text-gray-400'}">${priceGasoline}</p></div>
+                    <div><p class="text-xs text-gray-500">경유</p><p class="font-semibold ${priceDiesel !== '정보없음' ? 'text-green-700' : 'text-gray-400'}">${priceDiesel}</p></div>
+                    <div><p class="text-xs text-gray-500">LPG</p><p class="font-semibold ${priceLPG !== '정보없음' ? 'text-green-700' : 'text-gray-400'}">${priceLPG}</p></div>
+                </div>`;
+            selectedStoreInfoEl.appendChild(card);
+        }
+
+        function displayChart(fuelType) {
+            if (userLocation === null) {
+                showStatusMessage("거리-가격 산점도를 보려면 '현위치' 버튼을 눌러 위치 정보를 허용해주세요.");
+                return;
+            }
+            const chartData = allStoresData
+                .filter(store => store.distance !== null && store.prices[fuelType] && store.prices[fuelType] !== '0')
+                .map(store => ({
+                    x: parseFloat(store.distance.toFixed(2)),
+                    y: parseInt(store.prices[fuelType]),
+                    store: store // Keep a reference to the original store object
+                }));
+
+            if (chartData.length === 0) {
+                showStatusMessage("선택된 유종에 대한 주유소 데이터가 충분하지 않습니다.");
+                if (myChart) {
+                    myChart.destroy();
+                    myChart = null;
+                }
+                return;
+            }
+
+            const distances = chartData.map(d => d.x);
+            const prices = chartData.map(d => d.y);
+
+            const avgDistance = distances.reduce((sum, d) => sum + d, 0) / distances.length;
+            const avgPrice = prices.reduce((sum, p) => sum + p, 0) / prices.length;
+
+            const ctx = document.getElementById('cost-effectiveness-chart').getContext('2d');
+
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: '주유소',
+                        data: chartData,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        pointHitRadius: 10,
+                        pointBorderColor: 'rgba(75, 192, 192, 1)',
+                        pointBackgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const store = context.raw.store;
+                                    return `${store.OS_NM}: ${context.raw.x} km, ${context.raw.y} 원`;
+                                }
+                            }
+                        },
+                        annotation: {
+                            annotations: {
+                                lineX: {
+                                    type: 'line',
+                                    xMin: avgDistance,
+                                    xMax: avgDistance,
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    borderWidth: 2,
+                                    label: {
+                                        content: '평균 거리',
+                                        enabled: true,
+                                        position: 'start'
+                                    }
+                                },
+                                lineY: {
+                                    type: 'line',
+                                    yMin: avgPrice,
+                                    yMax: avgPrice,
+                                    borderColor: 'rgb(54, 162, 235)',
+                                    borderWidth: 2,
+                                    label: {
+                                        content: '평균 가격',
+                                        enabled: true,
+                                        position: 'start'
+                                    }
+                                }
+                            }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            title: {
+                                display: true,
+                                text: '거리 (km)'
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            title: {
+                                display: true,
+                                text: '가격 (원)'
+                            }
+                        }
+                    },
+                    onClick: (event, elements) => {
+                        if (elements.length > 0) {
+                            const clickedElementIndex = elements[0].index;
+                            const store = myChart.data.datasets[0].data[clickedElementIndex].store;
+                            displaySelectedStoreInfo(store);
+                        }
+                    }
+                }
+            });
+        }
+
         function sortAndDisplayData(sortBy) {
             let sortedData = [...allStoresData];
             if (sortBy === 'distance') {
@@ -150,7 +320,12 @@
                         : null;
                     return { ...store, distance };
                 });
-                sortAndDisplayData(sortBySelect.value);
+                // Only sort and display if current view is list
+                if (currentView === 'list') {
+                    sortAndDisplayData(sortBySelect.value);
+                } else {
+                    displayChart(fuelTypeSelect.value);
+                }
             }
         }
 
@@ -174,16 +349,40 @@
             }
         }
 
+        function toggleView() {
+            if (currentView === 'list') {
+                currentView = 'chart';
+                toggleViewBtn.textContent = '주유소 목록';
+                storeListEl.classList.add('hidden');
+                listControls.style.display = 'none';
+                chartContainer.classList.remove('hidden');
+                chartControls.style.display = 'flex';
+                displayChart(fuelTypeSelect.value);
+            } else {
+                currentView = 'list';
+                toggleViewBtn.textContent = '거리-가격 산점도';
+                chartContainer.classList.add('hidden');
+                chartControls.style.display = 'none';
+                storeListEl.classList.remove('hidden');
+                listControls.style.display = 'flex';
+                selectedStoreInfoEl.innerHTML = ''; // Clear selected store info
+                sortAndDisplayData(sortBySelect.value);
+            }
+        }
+
         sortBySelect.addEventListener('change', () => sortAndDisplayData(sortBySelect.value));
         relocateBtn.addEventListener('click', requestLocation);
+        toggleViewBtn.addEventListener('click', toggleView);
+        fuelTypeSelect.addEventListener('change', () => displayChart(fuelTypeSelect.value));
 
         window.onload = async () => {
             showLoader(true);
             const stores = await fetchJsonData();
             if (stores.length > 0) {
                 allStoresData = stores.map(s => ({...s, distance: null})); // Initialize with null distance
-                displayList(allStoresData); // Display immediately
-                requestLocation(); // Then try to get location
+                requestLocation(); // Get location first
+                // Initial display is list view
+                sortAndDisplayData(sortBySelect.value);
             }
             showLoader(false);
         };
