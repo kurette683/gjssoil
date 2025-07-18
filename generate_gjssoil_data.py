@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 import json
 import time
+import os # Add this line
 from pyproj import Transformer, CRS
 
 def generate_gjssoil_data():
@@ -12,7 +13,10 @@ def generate_gjssoil_data():
     input_info_path = "gjssoil_info.csv"
     output_json_path = "gjssoil_data.json"
     output_csv_path = "gjssoil_path.csv"
-    opinet_api_key = "F250708581" # 여기에 실제 오피넷 API 키를 입력해야 합니다.
+    opinet_api_key = os.environ.get("OPINET_API_KEY") # Get API key from environment variable
+    if not opinet_api_key:
+        print("오류: OPINET_API_KEY 환경 변수가 설정되지 않았습니다.")
+        return
 
     print(f"'{input_info_path}' 파일 읽는 중...\n")
     try:
