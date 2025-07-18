@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 import time
 import json
+import os # Add this line
 
 def get_more_station_info():
     """
@@ -9,7 +10,10 @@ def get_more_station_info():
     """
     input_list_path = "D:\Vault\gemini\gjssoil\gjssoil_list.csv"
     output_filename = "gjssoil_info.csv"
-    opinet_api_key = "F250708581" # 여기에 실제 오피넷 API 키를 입력해야 합니다.
+    opinet_api_key = os.environ.get("OPINET_API_KEY") # Get API key from environment variable
+    if not opinet_api_key:
+        print("오류: OPINET_API_KEY 환경 변수가 설정되지 않았습니다.")
+        return
 
     # 광주광역시 시도 코드 및 시군구 코드 (필터링용)
     SIDO_CODE = "16"
