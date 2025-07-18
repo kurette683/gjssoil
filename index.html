@@ -89,9 +89,6 @@
         let myChart = null; // Chart instance
         let currentView = 'list'; // 'list' or 'chart'
 
-        // Initially disable the toggle view button
-        toggleViewBtn.disabled = true;
-
         const showLoader = (show) => { loaderContainer.style.display = show ? 'flex' : 'none'; };
         const showStatusMessage = (message) => {
             statusMessageEl.textContent = message;
@@ -361,8 +358,6 @@
                 showStatusMessage("이 브라우저는 위치 정보를 지원하지 않습니다.");
                 updateDistancesAndRender(null);
             }
-            // Ensure the button is enabled after location attempt
-            toggleViewBtn.disabled = false;
         }
 
         function toggleView() {
