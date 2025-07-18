@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gjssoil - 광주 상생카드 주유소 찾기</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
     <style>
         .loader {
             border: 8px solid #f3f3f3; /* Light grey */
@@ -20,8 +22,10 @@
         }
         #chart-container {
             position: relative;
-            height: 500px; /* Fixed height for square aspect ratio */
+            height: 50vh; /* Adjust height for better responsiveness */
             width: 100%;
+            max-width: 800px; /* Add max-width */
+            margin: auto; /* Center the chart */
         }
         #cost-effectiveness-chart {
             height: 100% !important;
@@ -63,16 +67,13 @@
                 <canvas id="cost-effectiveness-chart"></canvas>
                 <div id="selected-store-info" class="mt-4 space-y-4"></div>
             </div>
-            <div id="store-list" class="space-y-4"></div>
+            <div id="store-list" class="space-y-4 hidden"></div>
         </main>
         <footer class="text-center text-gray-500 text-sm mt-8 pb-4">
             <p>본 데이터는 공공데이터포털과 오피넷 API를 기반으로 제공하고 있으나, 누락된 정보가 있을 수 있으니 주의가 필요합니다.</p>
         </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
     <script>
-        console.log("Script started!"); // Debug log
         const storeListEl = document.getElementById('store-list');
         const sortBySelect = document.getElementById('sort-by');
         const loaderContainer = document.getElementById('loader-container');
@@ -87,8 +88,8 @@
 
         let allStoresData = [];
         let userLocation = null;
-        let myChart = null; // Chart instance
-        let currentView = 'list'; // 'list' or 'chart'
+        let myChart = null;
+        let currentView = 'list';
 
         const showLoader = (show) => { loaderContainer.style.display = show ? 'flex' : 'none'; };
         const showStatusMessage = (message) => {
@@ -97,20 +98,19 @@
         };
 
         const calculateDistance = (lat1, lon1, lat2, lon2) => {
-            console.log(`Calculating distance between (${lat1}, ${lon1}) and (${lat2}, ${lon2})`);
             if (lat1 === null || lon1 === null || lat2 === null || lon2 === null) return null;
             const R = 6371; // Radius of the Earth in km
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
             const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
             const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            const distance = R * c;
-            console.log(`Calculated distance: ${distance} km`);
-            return distance; // Distance in km
+            return R * c; // Distance in km
         };
 
         async function fetchJsonData() {
-            const jsonUrl = "./gjssoil_data.json";
+            // Construct absolute URL for gjssoil_data.json
+            const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+            const jsonUrl = baseUrl + "gjssoil_data.json";
             try {
                 const response = await fetch(`${jsonUrl}?t=${new Date().getTime()}`); // Cache busting
                 if (!response.ok) throw new Error(`JSON 파일 로드 오류: ${response.status}`);
@@ -119,7 +119,7 @@
                 return stores;
             } catch (error) {
                 console.error("주유소 데이터 로드 실패:", error);
-                showStatusMessage("주유소 정보를 불러오는 데 실패했습니다. 파일을 확인해주세요.");
+                showStatusMessage("주유소 정보를 불러오는 데 실패했습니다. gjssoil_data.json 파일을 확인해주세요.");
                 return [];
             }
         }
@@ -155,9 +155,8 @@
 
         function displaySelectedStoreInfo(store) {
             selectedStoreInfoEl.innerHTML = '';
-            if (!store) {
-                return;
-            }
+            if (!store) return;
+            
             const priceGasoline = store.prices['B027'] ? `${parseInt(store.prices['B027']).toLocaleString()}원` : '정보없음';
             const priceDiesel = store.prices['D047'] ? `${parseInt(store.prices['D047']).toLocaleString()}원` : '정보없음';
             const priceLPG = store.prices['K015'] ? `${parseInt(store.prices['K015']).toLocaleString()}원` : '정보없음';
@@ -185,11 +184,11 @@
                 return;
             }
             const chartData = allStoresData
-                .filter(store => store.distance !== null && store.prices[fuelType] && store.prices[fuelType] !== '0')
+                .filter(store => store.distance !== null && store.prices[fuelType] && store.prices[fuelType] > 0)
                 .map(store => ({
                     x: parseFloat(store.distance.toFixed(2)),
                     y: parseInt(store.prices[fuelType]),
-                    store: store // Keep a reference to the original store object
+                    store: store
                 }));
 
             if (chartData.length === 0) {
@@ -208,10 +207,7 @@
             const avgPrice = prices.reduce((sum, p) => sum + p, 0) / prices.length;
 
             const ctx = document.getElementById('cost-effectiveness-chart').getContext('2d');
-
-            if (myChart) {
-                myChart.destroy();
-            }
+            if (myChart) myChart.destroy();
 
             myChart = new Chart(ctx, {
                 type: 'scatter',
@@ -220,13 +216,8 @@
                         label: '주유소',
                         data: chartData,
                         backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1,
-                        pointRadius: 5,
-                        pointHoverRadius: 7,
-                        pointHitRadius: 10,
-                        pointBorderColor: 'rgba(75, 192, 192, 1)',
-                        pointBackgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        pointRadius: 6,
+                        pointHoverRadius: 8
                     }]
                 },
                 options: {
@@ -237,7 +228,7 @@
                             callbacks: {
                                 label: function(context) {
                                     const store = context.raw.store;
-                                    return `${store.OS_NM}: ${context.raw.x} km, ${context.raw.y} 원`;
+                                    return `${store.name}: ${context.raw.x} km, ${context.raw.y.toLocaleString()} 원`;
                                 }
                             }
                         },
@@ -249,11 +240,7 @@
                                     xMax: avgDistance,
                                     borderColor: 'rgb(255, 99, 132)',
                                     borderWidth: 2,
-                                    label: {
-                                        content: '평균 거리',
-                                        enabled: true,
-                                        position: 'start'
-                                    }
+                                    label: { content: `평균 거리 (${avgDistance.toFixed(1)}km)`, enabled: true, position: 'start' }
                                 },
                                 lineY: {
                                     type: 'line',
@@ -261,39 +248,20 @@
                                     yMax: avgPrice,
                                     borderColor: 'rgb(54, 162, 235)',
                                     borderWidth: 2,
-                                    label: {
-                                        content: '평균 가격',
-                                        enabled: true,
-                                        position: 'start'
-                                    }
+                                    label: { content: `평균 가격 (${avgPrice.toLocaleString()}원)`, enabled: true, position: 'start' }
                                 }
                             }
                         },
-                        legend: {
-                            display: false
-                        }
+                        legend: { display: false }
                     },
                     scales: {
-                        x: {
-                            type: 'linear',
-                            position: 'bottom',
-                            title: {
-                                display: true,
-                                text: '거리 (km)'
-                            }
-                        },
-                        y: {
-                            type: 'linear',
-                            title: {
-                                display: true,
-                                text: '가격 (원)'
-                            }
-                        }
+                        x: { title: { display: true, text: '거리 (km)' } },
+                        y: { title: { display: true, text: '가격 (원)' } }
                     },
                     onClick: (event, elements) => {
                         if (elements.length > 0) {
-                            const clickedElementIndex = elements[0].index;
-                            const store = myChart.data.datasets[0].data[clickedElementIndex].store;
+                            const i = elements[0].index;
+                            const store = myChart.data.datasets[0].data[i].store;
                             displaySelectedStoreInfo(store);
                         }
                     }
@@ -321,23 +289,18 @@
         
         function updateDistancesAndRender(location) {
             userLocation = location;
-            console.log("User Location for distance calculation:", userLocation);
             if (allStoresData.length > 0) {
-                allStoresData = allStoresData.map(store => {
-                    console.log(`Store ${store.OS_NM} coordinates: (${store.LAT}, ${store.LNG})`);
-                    const distance = userLocation
-                        ? calculateDistance(userLocation.lat, userLocation.lng, store.LAT, store.LNG)
-                        : null;
-                    return { ...store, distance };
-                });
-                // Only sort and display if current view is list
+                allStoresData = allStoresData.map(store => ({
+                    ...store,
+                    distance: userLocation ? calculateDistance(userLocation.lat, userLocation.lng, store.LAT, store.LNG) : null
+                }));
+                
                 if (currentView === 'list') {
                     sortAndDisplayData(sortBySelect.value);
                 } else {
                     displayChart(fuelTypeSelect.value);
                 }
             }
-            // Enable toggle view button after location is obtained
             toggleViewBtn.disabled = false;
         }
 
@@ -377,7 +340,7 @@
                 chartControls.style.display = 'none';
                 storeListEl.classList.remove('hidden');
                 listControls.style.display = 'flex';
-                selectedStoreInfoEl.innerHTML = ''; // Clear selected store info
+                selectedStoreInfoEl.innerHTML = '';
                 sortAndDisplayData(sortBySelect.value);
             }
         }
@@ -391,11 +354,15 @@
             showLoader(true);
             const stores = await fetchJsonData();
             if (stores.length > 0) {
-                allStoresData = stores.map(s => ({...s, distance: null})); // Initialize with null distance
-                requestLocation(); // Get location first
-                // Initial display is list view
-                storeListEl.classList.remove('hidden'); // Ensure list is visible on load
-                sortAndDisplayData(sortBySelect.value);
+                allStoresData = stores.map(s => ({...s, distance: null}));
+                storeListEl.classList.remove('hidden');
+                requestLocation();
+            } else {
+                storeListEl.classList.remove('hidden');
+                displayList([]); // Display empty message
             }
             showLoader(false);
         };
+    </script>
+</body>
+</html>
