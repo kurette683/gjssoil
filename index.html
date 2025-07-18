@@ -394,6 +394,7 @@
                 requestLocation(); // Get location first
                 // Initial display is list view
                 sortAndDisplayData(sortBySelect.value);
+                console.log("After initial sortAndDisplayData, storeListEl classes:", storeListEl.classList); // Debug log
             }
             showLoader(false);
         };
